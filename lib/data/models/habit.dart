@@ -17,6 +17,7 @@ class Habit {
 class TrackDate {
   @Id()
   int id = 0;
+  @Property(type: PropertyType.date)
   final DateTime date;
   final habit = ToOne<Habit>();
 

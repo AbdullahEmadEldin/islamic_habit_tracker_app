@@ -1,0 +1,70 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:6979109680142795989",
+      "lastPropertyId": "2:8336359816544026075",
+      "name": "Habit",
+      "properties": [
+        {
+          "id": "1:4872861899314982632",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8336359816544026075",
+          "name": "habitName",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "1:7570966867880547580",
+          "name": "dates",
+          "targetId": "2:456136449786670084"
+        }
+      ]
+    },
+    {
+      "id": "2:456136449786670084",
+      "lastPropertyId": "3:4357920353396319788",
+      "name": "TrackDate",
+      "properties": [
+        {
+          "id": "1:5208661394387759637",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:76664725893272784",
+          "name": "date",
+          "type": 10
+        },
+        {
+          "id": "3:4357920353396319788",
+          "name": "habitId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:793389496873176321",
+          "relationTarget": "Habit"
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:456136449786670084",
+  "lastIndexId": "1:793389496873176321",
+  "lastRelationId": "1:7570966867880547580",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
