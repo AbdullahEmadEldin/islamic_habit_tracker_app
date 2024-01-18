@@ -20,51 +20,51 @@ export 'package:objectbox/objectbox.dart'; // so that callers only have to impor
 
 final _entities = <ModelEntity>[
   ModelEntity(
-      id: const IdUid(1, 6979109680142795989),
+      id: const IdUid(1, 4681346368456886060),
       name: 'Habit',
-      lastPropertyId: const IdUid(2, 8336359816544026075),
+      lastPropertyId: const IdUid(2, 5691985112170452776),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 4872861899314982632),
+            id: const IdUid(1, 5347330576760357442),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 8336359816544026075),
+            id: const IdUid(2, 5691985112170452776),
             name: 'habitName',
             type: 9,
             flags: 0)
       ],
       relations: <ModelRelation>[
         ModelRelation(
-            id: const IdUid(1, 7570966867880547580),
+            id: const IdUid(1, 2750809540823958309),
             name: 'dates',
-            targetId: const IdUid(2, 456136449786670084))
+            targetId: const IdUid(2, 2339562160686028690))
       ],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(2, 456136449786670084),
+      id: const IdUid(2, 2339562160686028690),
       name: 'TrackDate',
-      lastPropertyId: const IdUid(3, 4357920353396319788),
+      lastPropertyId: const IdUid(3, 2302294327899818365),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 5208661394387759637),
+            id: const IdUid(1, 8256196822272192578),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 76664725893272784),
+            id: const IdUid(2, 8121904453056395677),
             name: 'date',
             type: 10,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 4357920353396319788),
+            id: const IdUid(3, 2302294327899818365),
             name: 'habitId',
             type: 11,
             flags: 520,
-            indexId: const IdUid(1, 793389496873176321),
+            indexId: const IdUid(1, 7928645540033504756),
             relationTarget: 'Habit')
       ],
       relations: <ModelRelation>[],
@@ -98,9 +98,9 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(2, 456136449786670084),
-      lastIndexId: const IdUid(1, 793389496873176321),
-      lastRelationId: const IdUid(1, 7570966867880547580),
+      lastEntityId: const IdUid(2, 2339562160686028690),
+      lastIndexId: const IdUid(1, 7928645540033504756),
+      lastRelationId: const IdUid(1, 2750809540823958309),
       lastSequenceId: const IdUid(0, 0),
       retiredEntityUids: const [],
       retiredIndexUids: const [],
@@ -161,7 +161,9 @@ ModelDefinition getObjectBoxModel() {
           final rootOffset = buffer.derefObject(0);
           final dateParam = DateTime.fromMillisecondsSinceEpoch(
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 6, 0));
-          final object = TrackDate(date: dateParam)
+          final doneParam =
+              const fb.BoolReader().vTableGet(buffer, rootOffset, 3, false);
+          final object = TrackDate(date: dateParam, done: doneParam)
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           object.habit.targetId =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);

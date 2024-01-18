@@ -5,15 +5,16 @@ import 'package:islamic_habit_tracker/core/locator.dart';
 import 'package:islamic_habit_tracker/core/navigation/router.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/core/theme/theme_manager.dart';
+import 'package:islamic_habit_tracker/data/service/habit_database/obx_store.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
 
 ///this instance is the main and only instance to create database
 ///you can use it to access store and create Box for each enitity
-//late ObjectBox mainObjectbox;
+late ObjectBox mainObjectbox;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setUp();
-  // mainObjectbox = await ObjectBox.createDB();
+  mainObjectbox = await ObjectBox.createDB();
   runApp(const AzkarApp());
 }
 

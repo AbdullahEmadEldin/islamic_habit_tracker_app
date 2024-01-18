@@ -19,9 +19,11 @@ class TrackDate {
   int id = 0;
   @Property(type: PropertyType.date)
   final DateTime date;
+  final bool done;
   final habit = ToOne<Habit>();
 
   TrackDate({
     required this.date,
+    required this.done,
   });
 }
