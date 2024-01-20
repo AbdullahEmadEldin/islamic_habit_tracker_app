@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:islamic_habit_tracker/data/models/habit.dart';
+import 'package:islamic_habit_tracker/data/models/tracking_date.dart';
+import 'package:islamic_habit_tracker/logic/cubit/habit_cubit.dart';
 
 class HabitTile extends StatefulWidget {
   final List<Habit> habits;
@@ -17,6 +19,10 @@ class _HabitTileState extends State<HabitTile> {
         shrinkWrap: true,
         itemCount: widget.habits.length,
         itemBuilder: (context, i) {
+          DateTime now = DateTime.now();
+          DateTime dateOnly = DateTime(now.year, now.month, now.day);
+          bool checkBoxBool = false;
+
           return Container(
             padding: const EdgeInsets.all(8),
             margin: const EdgeInsets.all(8),
@@ -46,8 +52,11 @@ class _HabitTileState extends State<HabitTile> {
                     }),
                     shape: const CircleBorder(),
                     side: const BorderSide(color: Colors.deepPurple, width: 2),
-                    value: false,
+                    value: checkBoxBool,
                     onChanged: (check) {
+                      TrackDate date = TrackDate(date: dateOnly, done: true);
+                      BlocProvider.of<HabitsCubit>(context)
+                          .addTrackDate(widget.habits[i], date);
                       setState(() {});
                     })
               ],

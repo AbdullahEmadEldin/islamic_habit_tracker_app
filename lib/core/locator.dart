@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:islamic_habit_tracker/core/localization/localization_manager.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/core/theme/theme_manager.dart';
+import 'package:islamic_habit_tracker/data/service/habit_database/habits_db.dart';
 
 final locator = GetIt.instance;
 ThemeData _appTheme = AppThemes.lightAppTheme;
@@ -13,5 +14,5 @@ void setUp() {
   locator.registerSingleton<ThemeData>(_appTheme);
   locator.registerLazySingleton<ThemeManager>(() => _themeManager);
   locator.registerLazySingleton<LocalizationManager>(() => _appLanguage);
-  // locator.registerLazySingleton<HabitsRepository>(() => HabitsRepository());
+  locator.registerLazySingleton<HabitDB>(() => HabitDB());
 }

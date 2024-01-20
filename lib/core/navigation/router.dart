@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:islamic_habit_tracker/core/locator.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
 import 'package:islamic_habit_tracker/data/models/azkar_category.dart';
+import 'package:islamic_habit_tracker/data/service/habit_database/habits_db.dart';
 import 'package:islamic_habit_tracker/logic/cubit/habit_cubit.dart';
 import 'package:islamic_habit_tracker/view/pages/azkar_details.dart';
 import 'package:islamic_habit_tracker/view/pages/azkar_screen.dart';
@@ -26,7 +28,7 @@ class AppRouter {
             path: '/bottomBar',
             pageBuilder: (context, state) => MaterialPage(
                     child: BlocProvider(
-                  create: (context) => HabitsCubit(),
+                  create: (context) => HabitsCubit(db: locator.get<HabitDB>()),
                   child: BottomNavBar(),
                 )),
             routes: [
