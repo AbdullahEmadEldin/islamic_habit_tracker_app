@@ -1,6 +1,4 @@
-// ignore_for_file: avoid_print
-
-import 'dart:convert';
+// ignore_for_file: avoid_print, unused_local_variable
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
@@ -18,34 +16,65 @@ class HabitsCubit extends Cubit<HabitsState> {
     try {
       await db.createData(
           " INSERT INTO ${db.habitTable} ('habitName') VALUES ('${habit.habitName}')");
+      addTrackDate(habit, TrackDate(date: DateTime.now(), done: true));
     } catch (e) {
       print('INside Cubbbbbit: rerror createHabit ${e.toString()}');
     }
   }
 
   void addTrackDate(Habit habit, TrackDate date) async {
-    try {} catch (e) {
+    try {
+      await db.createData(
+          '''
+       INSERT INTO "${db.datesTable}" ("id", "date", "done")
+       VALUES (${habit.id}, '${date.date}', ${date.done ? 1 : 0})
+    ''');
+    } catch (e) {
       print('INside Cubbbbbit: rerror adding datte ${e.toString()}');
     }
   }
 
   void getHabits() async {
     try {
-      List<Map<String, dynamic>> mapObj =
-          await db.readData("SELECT * FROM '${db.habitTable}'");
-      List<Habit> habits = mapObj.map((e) => Habit.fromMap(e)).toList();
-      emit(SucessHabits(habits: habits));
+      List<Map<String, dynamic>> habitsMap =
+          await db.readData('SELECT * FROM ${db.habitTable}');
+      List<Habit> habbits = habitsMap
+          .map(
+            (e) => Habit.fromMap(e),
+          )
+          .toList();
+
+      for (int i = 0; i < habbits.length; i++) {
+        List<Map<String, dynamic>> datesMap = await db.readData(
+            'SELECT * FROM ${db.datesTable} WHERE id = ${habbits[i].id}');
+        List<TrackDate> dates = datesMap
+            .map(
+              (e) => TrackDate.fromMap(e),
+            )
+            .toList();
+        habbits[i].trakingDates = [];
+        habbits[i].trakingDates!.addAll(dates);
+      }
+      print('COOOOOOOOOOOOOOOOOOOOOOOmplete resssponse:: $habbits');
+      emit(SucessHabits(habits: habbits));
     } catch (e) {
-      print('INside Cubbbbbit: rerror abstractHabits ${e.toString()}');
+      print('error in cubit getting habbits :: ${e.toString()}');
     }
   }
 
-  void deleteHabit(Habit habit) {
-    try {} catch (e) {
+  void deleteHabit(Habit habit) async {
+    try {
+      await db
+          .deleteData('DELETE FROM ${db.habitTable} WHERE id = ${habit.id}');
+      await db
+          .deleteData('DELETE FROM ${db.datesTable} WHERE id = ${habit.id}');
+      print('Delteing habit with it history:: inside CCUUUBIT');
+    } catch (e) {
       print('INside Cubbbbbit: rerror delete habit ${e.toString()}');
     }
   }
 
+  //TODO: Replace deleteCompleteDatabase with just deleting data not the data base
   void deleteAllHabit() async {
     try {
       await db.deleteCompleteDatabase();
@@ -54,26 +83,3 @@ class HabitsCubit extends Cubit<HabitsState> {
     }
   }
 }
-// [
-//    {
-//      id: 1, 
-//      habitName: غغغغ, 
-//      trackingDates: 
-//          [
-//           [
-//             [
-//               [], 
-//               {"id":null,"date":1705615200000,"done":true}
-//             ], 
-//             {"id":null,"date":1705615200000,"done":true}
-//           ], 
-//           {"id":null,"date":1705615200000,"done":true}
-//         ]
-//     }, 
-//     {
-//       id: 2, 
-//       habitName: هلااااا, 
-//       trackingDates: 
-//         []
-//       }
-// ]

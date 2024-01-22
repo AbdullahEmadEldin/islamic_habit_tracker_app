@@ -49,17 +49,11 @@ class HabitDB {
 
     dbBatch.execute('''
   CREATE TABLE "$datesTable"(
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" INTEGER NOT NULL,
     "date" TEXT NOT NULL,
-    "done" TEXT NOT NULL
+    "done" INTEGER NOT NULL
   )
 ''');
-    dbBatch.execute(''' 
-  CREATE TABLE "$relationTable"(
-    "habitID" INTEGER references habits (ID),
-    "trackingDatesID" INTEGER references trackingDates (ID),
-    constraint pk_HabitsDates primary key (habitID, trackingDatesID)
-  )''');
     await dbBatch.commit();
     print('_oncreate function called to created data base table===========');
   }
@@ -112,5 +106,17 @@ class HabitDB {
     String path = await getDatabasesPath();
     String dbPath = join(path, 'habits_record.db');
     await deleteDatabase(dbPath);
+  }
+
+  ///=================================
+  ///=========Query proccess==========
+  ///=================================
+
+  Future<int> getLastInserRowId() async {
+    Database? mydb = await db;
+    int lastId = await mydb!
+        .rawQuery('SELECT last_insert_rowid();')
+        .then((result) => result.first.values.first as int);
+    return lastId;
   }
 }

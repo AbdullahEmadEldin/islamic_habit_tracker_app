@@ -23,8 +23,8 @@ class TrackDate {
   factory TrackDate.fromMap(Map<String, dynamic> map) {
     return TrackDate(
       id: map['id'] as int,
-      date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
-      done: map['done'] as bool,
+      date: DateTime.parse(map['date']),
+      done: map['done'] == 1 ? true : false,
     );
   }
 
