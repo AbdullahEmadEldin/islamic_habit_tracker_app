@@ -24,7 +24,7 @@ class SettingsScreen extends StatelessWidget {
                 borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(35),
                     bottomRight: Radius.circular(35)),
-                color: lForeground),
+                color: lForeground.withOpacity(0.8)),
           ),
           Positioned(
             top: size.height * 0.06,

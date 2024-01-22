@@ -22,12 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     BlocProvider.of<HabitsCubit>(context).getHabits();
     final size = MediaQuery.of(context).size;
     final textTheme = Theme.of(context).textTheme;
-    List<String> dd = [
-      TrackDate(id: 1, date: DateTime(2023, 5, 1), done: true).toJson(),
-      TrackDate(id: 2, date: DateTime(2024, 4, 17), done: true).toJson(),
-      TrackDate(id: 3, date: DateTime(2025, 7, 30), done: true).toJson(),
-      TrackDate(id: 4, date: DateTime(2023, 2, 6), done: true).toJson(),
-    ];
+
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
@@ -44,12 +39,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       .copyWith(color: const Color.fromARGB(255, 57, 16, 129)),
                 ),
               ),
-              IconButton(
-                  onPressed: () {
-                    //  print('******************** ${dd}');
-                    BlocProvider.of<HabitsCubit>(context).deleteAllHabit();
-                  },
-                  icon: Icon(Icons.delete)),
+              // IconButton(
+              //     onPressed: () {
+              //       //  print('******************** ${dd}');
+              //       BlocProvider.of<HabitsCubit>(context).deleteAllHabit();
+              //     },
+              //     icon: Icon(Icons.delete)),
               isInputActive
                   ? _createNewHabit(size, context)
                   : BlocBuilder<HabitsCubit, HabitsState>(
@@ -136,6 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
               BlocProvider.of<HabitsCubit>(context).createHabit(
                 Habit(
                   habitName: habitName,
+                  trakingDates: [],
                 ),
               );
             }

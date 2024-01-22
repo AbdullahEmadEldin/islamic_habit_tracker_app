@@ -4,5 +4,5 @@ class AppRoutes {
   static String azkarScreen = 'homeScreen/azkarScreenp';
   static String settingsScreen = 'homeScreen/settingsScreen';
   static String azkarDetailsScreen = 'homeScreen/azkarScreenp/azkarDetails';
-  static String allHabits = 'homeScreen/habits';
+  static String habitsDetails = 'homeScreen/habtisDetails';
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/view/pages/azkar_screen.dart';
 import 'package:islamic_habit_tracker/view/pages/home_screen.dart';
 import 'package:islamic_habit_tracker/view/pages/settings_screen.dart';
@@ -54,7 +55,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         screens: _buildScreens(),
         items: _navBarsItems(),
         confineInSafeArea: true,
-        backgroundColor: Colors.white,
+        backgroundColor: lSecondaryBackground,
         handleAndroidBackButtonPress: true, // Default is true.
         resizeToAvoidBottomInset:
             true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.

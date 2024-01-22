@@ -26,4 +26,15 @@ class Helpers {
 
     return colors;
   }
+
+  /// this duration will used in Timer Widget
+  /// which in turn will execute a function when this duration ends
+  static Duration getNextMidnightRemainingDuration() {
+    DateTime nowInTime = DateTime.now();
+    DateTime currentDate =
+        DateTime(nowInTime.year, nowInTime.microsecond, nowInTime.day);
+    DateTime nextMidNight = currentDate.add(const Duration(days: 1));
+    Duration durationUntillMidgnight = nextMidNight.difference(nowInTime);
+    return durationUntillMidgnight;
+  }
 }

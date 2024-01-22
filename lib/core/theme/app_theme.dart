@@ -9,7 +9,7 @@ Color lContainerColor = const Color.fromARGB(255, 184, 176, 233);
 class AppThemes {
   static ThemeData lightAppTheme = ThemeData(
     brightness: Brightness.light,
-    scaffoldBackgroundColor: lBackground,
+    scaffoldBackgroundColor: const Color.fromARGB(255, 240, 238, 238),
     checkboxTheme: CheckboxThemeData(
       fillColor: MaterialStateColor.resolveWith(
         (states) {
