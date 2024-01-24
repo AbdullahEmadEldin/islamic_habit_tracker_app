@@ -12,6 +12,7 @@ class HorizontalDatePicaker extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return EasyInfiniteDateTimeLine(
+      showTimelineHeader: false,
       locale: locator.get<LocalizationManager>().isArabic() ? 'ar' : 'en',
       firstDate: DateTime.now().subtract(const Duration(days: 1)),
       focusDate: DateTime.now(),

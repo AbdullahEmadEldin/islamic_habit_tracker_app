@@ -1,12 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
-import 'package:islamic_habit_tracker/data/models/habit.dart';
 
-import 'package:islamic_habit_tracker/data/models/tracking_date.dart';
-import 'package:islamic_habit_tracker/logic/cubit/habit_cubit.dart';
+import 'package:islamic_habit_tracker/data/models/habit.dart';
+import 'package:islamic_habit_tracker/generated/l10n.dart';
+import 'package:islamic_habit_tracker/view/widgets/setting_option.dart';
+import 'package:islamic_habit_tracker/view/widgets/tracking_calendar.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class HabitsDetails extends StatelessWidget {
   final Habit mainHabit;
@@ -17,71 +17,139 @@ class HabitsDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool historyExsist = mainHabit.trakingDates!.isNotEmpty;
+    String startingDate = historyExsist
+        ? '${mainHabit.trakingDates!.first.date.day}-${mainHabit.trakingDates!.first.date.month}-${mainHabit.trakingDates!.first.date.year}'
+        : '';
+
     return SafeArea(
       child: Scaffold(
-          body: Column(
-        children: [
-          CalendarDatePicker2(
-            config: CalendarDatePicker2Config(
-              dayBuilder: ({
-                required date,
-                decoration,
-                isDisabled,
-                isSelected,
-                isToday,
-                textStyle,
-              }) {
-                Color dayColor = Colors.grey.withOpacity(0.5);
-                Color borderDayColor = Colors.grey;
-                for (var datee in mainHabit.trakingDates!) {
-                  if (date == datee.date) {
-                    datee.done
-                        ? (
-                            dayColor = const Color.fromARGB(255, 51, 128, 53)
-                                .withOpacity(0.4),
-                            borderDayColor =
-                                const Color.fromARGB(255, 86, 241, 91)
-                          )
-                        : (
-                            dayColor = const Color.fromARGB(255, 167, 37, 28)
-                                .withOpacity(0.4),
-                            borderDayColor =
-                                const Color.fromARGB(255, 252, 41, 25)
-                          );
-                  }
-                }
-
-                return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 1.5, color: borderDayColor),
-                        borderRadius: BorderRadius.circular(16),
-                        color: dayColor),
-                    child: Center(
-                        child: Text(
-                      date.day.toString(),
-                      style: const TextStyle(
-                        fontSize: 20,
-                      ),
-                    )),
-                  ),
-                );
-              },
+          body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Text(
+                mainHabit.habitName,
+                style: Theme.of(context).textTheme.displayLarge,
+              ),
             ),
-            value: [],
-          )
-        ],
+            Text(
+              S.of(context).trackHabit,
+              style: Theme.of(context)
+                  .textTheme
+                  .displayMedium!
+                  .copyWith(fontWeight: FontWeight.bold),
+            ),
+            TrackingCalender(mainHabit: mainHabit),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      S.of(context).Statistics,
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayMedium!
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "${S.of(context).habitStartingDate} $startingDate",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  ],
+                ),
+                _colorsIndicating(context),
+              ],
+            ),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '${S.of(context).AcheivementPercent} ',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    CircularPercentIndicator(
+                      radius: 30,
+                      percent: _calculateDoneHabitPercent(),
+                      center: Text(
+                        historyExsist
+                            ? '${(_calculateDoneHabitPercent() * 100).ceil()}%'
+                            : '',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      progressColor: _calculateDoneHabitPercent() < 0.5
+                          ? const Color.fromARGB(255, 212, 66, 56)
+                          : _calculateDoneHabitPercent() < 0.7
+                              ? const Color.fromARGB(255, 255, 208, 0)
+                              : AppColors.doneDayborderColor,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                print('hhhhhhhhhhhhhhhhhhhhhhh');
+              },
+              child: Text('dsdsd'),
+            ),
+            SettingOption(
+                icon: Icons.abc,
+                setting: 'setting',
+                ontap: () {
+                  print('zffffffffft');
+                })
+          ],
+        ),
       )),
     );
   }
-}
 
-Widget? Function(
-    {required DateTime date,
-    BoxDecoration? decoration,
-    bool? isDisabled,
-    bool? isSelected,
-    bool? isToday,
-    TextStyle? textStyle})? dayBuilder;
+  Widget _colorsIndicating(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Container(
+              height: 10,
+              width: 10,
+              color: AppColors.doneDayColor,
+            ),
+            const SizedBox(width: 4),
+            Text(S.of(context).doneLabelColor)
+          ],
+        ),
+        Row(
+          children: [
+            Container(
+              height: 10,
+              width: 10,
+              color: AppColors.falseDayColor,
+            ),
+            const SizedBox(width: 4),
+            Text(S.of(context).notAchieved)
+          ],
+        ),
+      ],
+    );
+  }
+
+  double _calculateDoneHabitPercent() {
+    int doneDays = 0;
+    for (int i = 0; i < mainHabit.trakingDates!.length; i++) {
+      if (mainHabit.trakingDates![i].done) {
+        doneDays++;
+      }
+    }
+    double percent = doneDays / mainHabit.trakingDates!.length;
+    return percent;
+  }
+}

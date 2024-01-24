@@ -20,7 +20,8 @@ class ZikrTile extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: lContainerColor),
+            borderRadius: BorderRadius.circular(10),
+            color: AppColors.lContainerColor),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
