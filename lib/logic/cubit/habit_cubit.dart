@@ -24,8 +24,7 @@ class HabitsCubit extends Cubit<HabitsState> {
 
   void addTrackDate(Habit habit, TrackDate date) async {
     try {
-      await db.createData(
-          '''
+      await db.createData('''
        INSERT INTO "${db.datesTable}" ("id", "date", "done")
        VALUES (${habit.id}, '${date.date}', ${date.done ? 1 : 0})
     ''');
@@ -74,10 +73,10 @@ class HabitsCubit extends Cubit<HabitsState> {
     }
   }
 
-  //TODO: Replace deleteCompleteDatabase with just deleting data not the data base
-  void deleteAllHabit() async {
+  void deleteAllHabits() async {
     try {
-      await db.deleteCompleteDatabase();
+      await db.deleteData('DELETE FROM ${db.habitTable}');
+      await db.deleteData('DELETE FROM ${db.datesTable}');
     } catch (e) {
       print('INside Cubbbbbit: rerror rmove all habits ${e.toString()}');
     }

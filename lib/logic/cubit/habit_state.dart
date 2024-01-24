@@ -10,9 +10,3 @@ final class SucessHabits extends HabitsState {
 
   SucessHabits({required this.habits});
 }
-
-final class SucessDatesForOneHabit extends HabitsState {
-  final List<TrackDate> dates;
-
-  SucessDatesForOneHabit({required this.dates});
-}

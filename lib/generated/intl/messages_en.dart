@@ -29,7 +29,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Dawm": MessageLookupByLibrary.simpleMessage("dawm"),
         "DeleteAllData":
             MessageLookupByLibrary.simpleMessage("Delete all data"),
+        "NO": MessageLookupByLibrary.simpleMessage("No"),
         "Statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
+        "Yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "addHabit": MessageLookupByLibrary.simpleMessage("Add habit"),
         "allHabits": MessageLookupByLibrary.simpleMessage("All habits"),
         "appTheme": MessageLookupByLibrary.simpleMessage("App Theme"),
@@ -37,7 +39,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "count": MessageLookupByLibrary.simpleMessage("Count:"),
         "dailyHabits": MessageLookupByLibrary.simpleMessage("Daily Habits"),
         "dailyRoutine": MessageLookupByLibrary.simpleMessage("Daily routine"),
-        "deleteAll": MessageLookupByLibrary.simpleMessage("Delete all"),
+        "deleteHabit": MessageLookupByLibrary.simpleMessage("Delete habit"),
+        "doYouWantRemoveHabit":
+            MessageLookupByLibrary.simpleMessage("Do you want remove habit"),
         "doneLabelColor": MessageLookupByLibrary.simpleMessage("Achieved"),
         "emptyHabits": MessageLookupByLibrary.simpleMessage(
             "You haven\'\'t add any habits yet"),
@@ -48,6 +52,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lang": MessageLookupByLibrary.simpleMessage("Language"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "notAchieved": MessageLookupByLibrary.simpleMessage("Not acheived"),
+        "notSartingYet":
+            MessageLookupByLibrary.simpleMessage("Not starting yet"),
         "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
         "onboardingtwo": MessageLookupByLibrary.simpleMessage(""),
         "onboradingone":
@@ -58,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
+        "streak": MessageLookupByLibrary.simpleMessage("Streak"),
         "trackHabit": MessageLookupByLibrary.simpleMessage("Track habit")
       };
 }

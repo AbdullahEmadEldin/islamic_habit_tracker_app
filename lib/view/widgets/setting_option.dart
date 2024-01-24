@@ -16,7 +16,7 @@ class SettingOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: ontap(),
+      onTap: () => ontap(),
       child: Row(
         children: [
           Icon(

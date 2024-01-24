@@ -2,11 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:blurrycontainer/blurrycontainer.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
+import 'package:islamic_habit_tracker/logic/cubit/habit_cubit.dart';
 import 'package:islamic_habit_tracker/view/widgets/drop_menu_component.dart';
 import 'package:islamic_habit_tracker/view/widgets/setting_option.dart';
 import 'package:islamic_habit_tracker/view/widgets/switcher.dart';
@@ -24,18 +26,17 @@ class SettingsScreen extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           Container(
-            height: size.height * 0.32,
+            height: size.height * 0.55,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(35),
                   bottomRight: Radius.circular(35)),
               gradient: LinearGradient(
                   colors: [AppColors.lContainerColor, Color(0xff674D9D)]),
-              color: Color(0xff674D9D),
             ),
           ),
           Positioned(
-            top: size.height * 0.06,
+            top: size.height * 0.04,
             left: size.width * 0.65,
             child: _buildSettingsHeader(context),
           ),
@@ -53,9 +54,9 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Positioned _setttingsOptionsBuilder(Size size, BuildContext context) {
+  Widget _setttingsOptionsBuilder(Size size, BuildContext context) {
     return Positioned(
-        top: 90,
+        top: 78,
         left: size.width / 2 - 140,
         child: Container(
           height: size.height * 0.42,
@@ -101,11 +102,11 @@ class SettingsScreen extends StatelessWidget {
                   SettingOption(
                     icon: Icons.delete_outline_outlined,
                     setting: S.of(context).DeleteAllData,
-                    ontap: () {
-                      // final prefs = await SharedPreferences.getInstance();
-                      // prefs.setBool('showHome', false);
-                      print('a7aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-                      //   context.goNamed(AppRoutes.onBoarding);
+                    ontap: () async {
+                      final prefs = await SharedPreferences.getInstance();
+                      BlocProvider.of<HabitsCubit>(context).deleteAllHabits();
+                      prefs.setBool('showHome', false);
+                      context.goNamed(AppRoutes.onBoarding);
                     },
                   ),
                   _buildDivider(),

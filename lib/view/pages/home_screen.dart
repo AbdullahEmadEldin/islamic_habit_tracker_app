@@ -35,29 +35,23 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               _buildLogoHeader(context),
               _buildDatePickerHeader(size, context, textTheme),
-
-              // IconButton(
-              //     onPressed: () {
-              //       //  print('******************** ${dd}');
-              //       BlocProvider.of<HabitsCubit>(context).deleteAllHabit();
-              //     },
-              //     icon: Icon(Icons.delete)),
               isInputActive
                   ? _createNewHabit(size, context)
-                  : BlocBuilder<HabitsCubit, HabitsState>(
-                      builder: (context, state) {
-                        if (state is SucessHabits) {
-                          if (state.habits.isEmpty) {
-                            return const EmptyHabit();
-                          }
+                  : HabitTile(habits: []),
+              // : BlocBuilder<HabitsCubit, HabitsState>(
+              //     builder: (context, state) {
+              //       if (state is SucessHabits) {
+              //         if (state.habits.isEmpty) {
+              //           return const EmptyHabit();
+              //         }
 
-                          return HabitTile(habits: state.habits);
-                        }
-                        return Container(
-                          child: Text('staate: ${state.toString()}'),
-                        );
-                      },
-                    )
+              //         return HabitTile(habits: state.habits);
+              //       }
+              //       return Container(
+              //         child: Text('staate: ${state.toString()}'),
+              //       );
+              //     },
+              //   )
             ],
           ),
         ),

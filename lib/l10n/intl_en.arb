@@ -35,11 +35,19 @@
     "@emptyHabits": {},
     "addHabit":"Add habit",
     "@addHabit": {},
-    "deleteAll":"Delete all",
-    "@deleteAll": {},
+    "deleteHabit":"Delete habit",
+    "@deleteHabit": {},
     "trackHabit":"Track habit",
     "@trackHabit": {},
     "Statistics":"Statistics",
+    "streak":"Streak",
+    "@streak": {},
+    "doYouWantRemoveHabit":"Do you want remove habit",
+    "@doYouWantRemoveHabit": {},
+    "Yes":"Yes",
+    "@Yes": {},
+    "NO":"No",
+    "@NO": {},
     "@Statistics": {},
     "habitStartingDate": "Habit starting date",
     "@habitStartingDate": {},
@@ -60,6 +68,8 @@
     "onboardingtwo":"",
     "@onboardingtwo": {},
     "DeleteAllData":"Delete all data",
-    "@DeleteAllData": {}
+    "@DeleteAllData": {},
+    "notSartingYet":"Not starting yet",
+    "@notSartingYet": {}
 
 }

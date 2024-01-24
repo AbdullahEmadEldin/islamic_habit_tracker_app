@@ -29,19 +29,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.home),
         title: "Home",
-        activeColorPrimary: AppColors.lForeground,
+        activeColorPrimary: AppColors.onboardingForeground,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.book_circle),
         title: "Azkar",
-        activeColorPrimary: AppColors.lForeground,
+        activeColorPrimary: AppColors.onboardingForeground,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.settings),
         title: "Settings",
-        activeColorPrimary: AppColors.lForeground,
+        activeColorPrimary: AppColors.onboardingForeground,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
     ];

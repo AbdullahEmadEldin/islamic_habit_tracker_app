@@ -19,7 +19,7 @@ class AzkarCategoryTile extends StatelessWidget {
         child: Center(
           child: Text(
             zikrCategory.category,
-            style: Theme.of(context).textTheme.titleMedium,
+            style: Theme.of(context).textTheme.displayMedium,
           ),
         ),
       ),

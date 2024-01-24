@@ -1,10 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:islamic_habit_tracker/core/navigation/routes.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 
 import 'package:islamic_habit_tracker/data/models/habit.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
-import 'package:islamic_habit_tracker/view/widgets/setting_option.dart';
+import 'package:islamic_habit_tracker/logic/cubit/habit_cubit.dart';
 import 'package:islamic_habit_tracker/view/widgets/tracking_calendar.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -25,22 +28,48 @@ class HabitsDetails extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Text(
-                mainHabit.habitName,
-                style: Theme.of(context).textTheme.displayLarge,
+              child: Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                    color: AppColors.onboardingForeground,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Text(
+                  mainHabit.habitName,
+                  style: Theme.of(context)
+                      .textTheme
+                      .displayLarge!
+                      .copyWith(color: Colors.white),
+                ),
               ),
             ),
-            Text(
-              S.of(context).trackHabit,
-              style: Theme.of(context)
-                  .textTheme
-                  .displayMedium!
-                  .copyWith(fontWeight: FontWeight.bold),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  S.of(context).trackHabit,
+                  style: Theme.of(context)
+                      .textTheme
+                      .displayMedium!
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
+                TextButton(
+                  onPressed: () {
+                    _ensureDeleteHabitDialog(context);
+                  },
+                  child: Text(
+                    S.of(context).deleteHabit,
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayMedium!
+                        .copyWith(fontWeight: FontWeight.bold),
+                  ),
+                )
+              ],
             ),
             TrackingCalender(mainHabit: mainHabit),
             Row(
@@ -71,9 +100,17 @@ class HabitsDetails extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      '${S.of(context).AcheivementPercent} ',
-                      style: Theme.of(context).textTheme.titleMedium,
+                    Column(
+                      children: [
+                        Text(
+                          '${S.of(context).AcheivementPercent} ',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                        Text(
+                          '${S.of(context).streak}:  ${_calStreakDays().toInt()}',
+                          style: Theme.of(context).textTheme.titleMedium,
+                        ),
+                      ],
                     ),
                     CircularPercentIndicator(
                       radius: 30,
@@ -94,21 +131,38 @@ class HabitsDetails extends StatelessWidget {
                 ),
               ),
             ),
-            InkWell(
-              onTap: () {
-                print('hhhhhhhhhhhhhhhhhhhhhhh');
-              },
-              child: Text('dsdsd'),
-            ),
-            SettingOption(
-                icon: Icons.abc,
-                setting: 'setting',
-                ontap: () {
-                  print('zffffffffft');
-                })
           ],
         ),
       )),
+    );
+  }
+
+  Future<dynamic> _ensureDeleteHabitDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (contexttt) => AlertDialog(
+        content: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            S.of(contexttt).doYouWantRemoveHabit,
+            style: Theme.of(contexttt).textTheme.displayMedium,
+          ),
+        ),
+        actions: [
+          TextButton(
+              onPressed: () {
+                BlocProvider.of<HabitsCubit>(context).deleteHabit(mainHabit);
+                BlocProvider.of<HabitsCubit>(context).getHabits();
+                contexttt.goNamed(AppRoutes.homeScreen);
+              },
+              child: Text(S.of(contexttt).Yes)),
+          TextButton(
+              onPressed: () {
+                contexttt.pop();
+              },
+              child: Text(S.of(contexttt).NO))
+        ],
+      ),
     );
   }
 
@@ -138,6 +192,17 @@ class HabitsDetails extends StatelessWidget {
             Text(S.of(context).notAchieved)
           ],
         ),
+        Row(
+          children: [
+            Container(
+              height: 10,
+              width: 10,
+              color: const Color.fromARGB(255, 206, 202, 202).withOpacity(0.5),
+            ),
+            const SizedBox(width: 4),
+            Text(S.of(context).notSartingYet)
+          ],
+        ),
       ],
     );
   }
@@ -151,5 +216,14 @@ class HabitsDetails extends StatelessWidget {
     }
     double percent = doneDays / mainHabit.trakingDates!.length;
     return percent;
+  }
+
+  int _calStreakDays() {
+    int streak = 0;
+    for (int i = 0; i < mainHabit.trakingDates!.length; i++) {
+      if (mainHabit.trakingDates![i].done == false) break;
+      if (mainHabit.trakingDates![i].done) streak++;
+    }
+    return streak;
   }
 }

@@ -31,7 +31,6 @@ class HabitDB {
 
   String habitTable = 'habits';
   String datesTable = 'trackingdates';
-  String relationTable = 'HabitsDates';
 
   /// create data base tables
   /// this method called once when data base is initialized

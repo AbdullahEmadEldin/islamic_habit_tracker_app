@@ -20,10 +20,10 @@ class PopMenuComponent extends StatelessWidget {
           value: S.of(context).arabic,
           child: Text(S.of(context).arabic),
         ),
-        PopupMenuItem(
-          value: S.of(context).endlish,
-          child: Text(S.of(context).endlish),
-        ),
+        // PopupMenuItem(
+        //   value: S.of(context).endlish,
+        //   child: Text(S.of(context).endlish),
+        // ),
       ],
     );
   }

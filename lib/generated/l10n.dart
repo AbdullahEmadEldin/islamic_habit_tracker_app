@@ -230,11 +230,11 @@ class S {
     );
   }
 
-  /// `Delete all`
-  String get deleteAll {
+  /// `Delete habit`
+  String get deleteHabit {
     return Intl.message(
-      'Delete all',
-      name: 'deleteAll',
+      'Delete habit',
+      name: 'deleteHabit',
       desc: '',
       args: [],
     );
@@ -255,6 +255,46 @@ class S {
     return Intl.message(
       'Statistics',
       name: 'Statistics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Streak`
+  String get streak {
+    return Intl.message(
+      'Streak',
+      name: 'streak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want remove habit`
+  String get doYouWantRemoveHabit {
+    return Intl.message(
+      'Do you want remove habit',
+      name: 'doYouWantRemoveHabit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get Yes {
+    return Intl.message(
+      'Yes',
+      name: 'Yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get NO {
+    return Intl.message(
+      'No',
+      name: 'NO',
       desc: '',
       args: [],
     );
@@ -355,6 +395,16 @@ class S {
     return Intl.message(
       'Delete all data',
       name: 'DeleteAllData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not starting yet`
+  String get notSartingYet {
+    return Intl.message(
+      'Not starting yet',
+      name: 'notSartingYet',
       desc: '',
       args: [],
     );

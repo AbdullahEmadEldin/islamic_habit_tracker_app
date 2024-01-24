@@ -29,7 +29,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Dawm": MessageLookupByLibrary.simpleMessage("داوم"),
         "DeleteAllData":
             MessageLookupByLibrary.simpleMessage("مسح كل البيانات"),
+        "NO": MessageLookupByLibrary.simpleMessage("لا"),
         "Statistics": MessageLookupByLibrary.simpleMessage("الإحصائيات"),
+        "Yes": MessageLookupByLibrary.simpleMessage("نعم"),
         "addHabit": MessageLookupByLibrary.simpleMessage("أضف عـادة جديدة"),
         "allHabits": MessageLookupByLibrary.simpleMessage("جميع العادات"),
         "appTheme": MessageLookupByLibrary.simpleMessage("نمط التطبيق"),
@@ -37,7 +39,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "count": MessageLookupByLibrary.simpleMessage("مرات التكرار:"),
         "dailyHabits": MessageLookupByLibrary.simpleMessage("العادات اليومية"),
         "dailyRoutine": MessageLookupByLibrary.simpleMessage("العادات اليومية"),
-        "deleteAll": MessageLookupByLibrary.simpleMessage("حذف كل العادات"),
+        "deleteHabit": MessageLookupByLibrary.simpleMessage("حذف العادة"),
+        "doYouWantRemoveHabit":
+            MessageLookupByLibrary.simpleMessage("هل حقا تريد حذف العادة؟"),
         "doneLabelColor":
             MessageLookupByLibrary.simpleMessage("داومت على العادة"),
         "emptyHabits": MessageLookupByLibrary.simpleMessage(
@@ -49,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lang": MessageLookupByLibrary.simpleMessage("اللغة"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "notAchieved": MessageLookupByLibrary.simpleMessage("لم تداوم"),
+        "notSartingYet": MessageLookupByLibrary.simpleMessage("لم تبدأ بعد"),
         "notification": MessageLookupByLibrary.simpleMessage("الإشعارات"),
         "onboardingtwo": MessageLookupByLibrary.simpleMessage(
             "داوم يساعدك على المحافظة على أذكارك وأورادك لأنه جمع لك جميع الأذكار الواردة في الكتاب والسنة."),
@@ -61,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("الإعدادت"),
         "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
         "start": MessageLookupByLibrary.simpleMessage("ابـــدأ"),
+        "streak": MessageLookupByLibrary.simpleMessage("الأيام المتتالية"),
         "trackHabit": MessageLookupByLibrary.simpleMessage("تتبع العادة")
       };
 }
