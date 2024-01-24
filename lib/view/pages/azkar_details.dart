@@ -60,7 +60,7 @@ class _AzkarDetailsState extends State<AzkarDetails> {
             },
             icon: Icon(
               Icons.font_download,
-              color: lForeground,
+              color: AppColors.lForeground,
             ))
       ],
     );

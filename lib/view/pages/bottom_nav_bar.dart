@@ -29,19 +29,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.home),
         title: "Home",
-        activeColorPrimary: const Color.fromARGB(255, 159, 69, 204),
+        activeColorPrimary: AppColors.lForeground,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.book_circle),
         title: "Azkar",
-        activeColorPrimary: const Color.fromARGB(255, 159, 69, 204),
+        activeColorPrimary: AppColors.lForeground,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.settings),
         title: "Settings",
-        activeColorPrimary: const Color.fromARGB(255, 159, 69, 204),
+        activeColorPrimary: AppColors.lForeground,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
     ];
@@ -55,7 +55,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         screens: _buildScreens(),
         items: _navBarsItems(),
         confineInSafeArea: true,
-        backgroundColor: lSecondaryBackground,
+        backgroundColor: Color(0xffCFC7E9),
         handleAndroidBackButtonPress: true, // Default is true.
         resizeToAvoidBottomInset:
             true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
@@ -64,7 +64,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
             true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
         decoration: NavBarDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          colorBehindNavBar: Colors.white,
+          // gradient: LinearGradient(
+          //     colors: [AppColors.lContainerColor, AppColors.lBackground]),
         ),
         popAllScreensOnTapOfSelectedTab: true,
         popActionScreens: PopActionScreensType.all,
@@ -80,7 +81,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           duration: Duration(milliseconds: 200),
         ),
         navBarStyle:
-            NavBarStyle.style19, // Choose the nav bar style with this property.
+            NavBarStyle.style1, // Choose the nav bar style with this property.
       ),
     );
   }

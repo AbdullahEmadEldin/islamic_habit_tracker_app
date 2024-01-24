@@ -3,23 +3,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/locator.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
+import 'package:islamic_habit_tracker/data/models/azkar_category.dart';
 import 'package:islamic_habit_tracker/data/models/habit.dart';
 import 'package:islamic_habit_tracker/data/service/habit_database/habits_db.dart';
 import 'package:islamic_habit_tracker/logic/cubit/habit_cubit.dart';
+import 'package:islamic_habit_tracker/view/pages/azkar_details.dart';
 import 'package:islamic_habit_tracker/view/pages/bottom_nav_bar.dart';
 import 'package:islamic_habit_tracker/view/pages/habits_details.dart';
-import 'package:islamic_habit_tracker/view/pages/splash_screen.dart';
+import 'package:islamic_habit_tracker/view/pages/onboarding/on_bording_collector.dart';
 
 class AppRouter {
-  static GoRouter router() {
+  static GoRouter router(bool showHome) {
     return GoRouter(
-      initialLocation: '/bottomBar',
+      initialLocation: showHome ? '/bottomBar' : '/onBoarding',
       routes: [
         GoRoute(
-          name: AppRoutes.splashScreen,
-          path: '/splash',
+          name: AppRoutes.onBoarding,
+          path: '/onBoarding',
           pageBuilder: (context, state) =>
-              const MaterialPage(child: SplashScreen()),
+              const MaterialPage(child: OnBordingCollector()),
         ),
         GoRoute(
           name: AppRoutes.homeScreen,
@@ -46,6 +48,14 @@ class AppRouter {
                 );
               },
             ),
+            GoRoute(
+              name: AppRoutes.azkarDetailsScreen,
+              path: 'azkarDetails',
+              pageBuilder: (context, state) {
+                final azkar = state.extra as ZikrCategory;
+                return MaterialPage(child: AzkarDetails(zikrCategory: azkar));
+              },
+            )
           ],
         )
       ],

@@ -6,6 +6,7 @@ class AppAssets {
   static const String settingsIcon = 'assets/images/settings_icon.png';
   static const String settingsBanner = 'assets/images/settings_panner.png';
   static const String emptyHabits = 'assets/images/empty.png';
-
-  static const String muslim = 'assets/images/muslimman.png';
+  static const String timeShedule = 'assets/images/scheedule.png';
+  static const String onboardOne = 'assets/images/hourglass.png';
+  static const String mosque = 'assets/images/ramadan.png';
 }

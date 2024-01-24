@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:islamic_habit_tracker/core/app_assets.dart';
+import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/data/models/habit.dart';
-import 'package:islamic_habit_tracker/data/models/tracking_date.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
 import 'package:islamic_habit_tracker/logic/cubit/habit_cubit.dart';
 import 'package:islamic_habit_tracker/view/widgets/empty_habit.dart';
@@ -30,15 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              _buildLogoHeader(context),
               _buildDatePickerHeader(size, context, textTheme),
-              Padding(
-                padding: const EdgeInsets.only(top: 8, right: 12, left: 12),
-                child: Text(
-                  S.of(context).dailyHabits,
-                  style: textTheme.displayMedium!
-                      .copyWith(color: const Color.fromARGB(255, 57, 16, 129)),
-                ),
-              ),
+
               // IconButton(
               //     onPressed: () {
               //       //  print('******************** ${dd}');
@@ -68,15 +65,45 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Container _buildLogoHeader(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [AppColors.lContainerColor, AppColors.lBackground],
+          begin: Alignment.topLeft,
+          transform: const GradientRotation(pi / 4),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Column(
+            children: [
+              Text(
+                S.of(context).Dawm,
+                style: Theme.of(context).textTheme.displayLarge,
+              ),
+              const Text('D A W M')
+            ],
+          ),
+          Image.asset(
+            AppAssets.splashLogo,
+            width: 100,
+            height: 100,
+          )
+        ],
+      ),
+    );
+  }
+
   Widget _buildDatePickerHeader(
       Size size, BuildContext context, TextTheme textTheme) {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        Container(
+        SizedBox(
           height: size.height / 4,
           width: double.infinity,
-          color: const Color(0xFFF5ECFF),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -98,8 +125,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Positioned _addTaskButton(Size size, BuildContext context) {
     return Positioned(
-      top: size.height * 0.22,
-      left: size.width - 230,
+      top: size.height * 0.17,
+      left: size.width - 220,
       child: ElevatedButton(
           style: const ButtonStyle(
             elevation: MaterialStatePropertyAll(15),
@@ -107,6 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: MaterialStatePropertyAll(
               Color.fromARGB(255, 149, 136, 235),
             ),
+            foregroundColor: MaterialStatePropertyAll(Colors.white),
             shape: MaterialStatePropertyAll(CircleBorder()),
           ),
           onPressed: () {

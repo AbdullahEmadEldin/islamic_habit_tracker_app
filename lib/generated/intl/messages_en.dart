@@ -23,8 +23,13 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "About": MessageLookupByLibrary.simpleMessage("About App"),
+        "AcheivementPercent":
+            MessageLookupByLibrary.simpleMessage("Acheivement percentage"),
         "Azkar": MessageLookupByLibrary.simpleMessage("azkar"),
-        "ZikrCollector": MessageLookupByLibrary.simpleMessage("Zikr Collector"),
+        "Dawm": MessageLookupByLibrary.simpleMessage("dawm"),
+        "DeleteAllData":
+            MessageLookupByLibrary.simpleMessage("Delete all data"),
+        "Statistics": MessageLookupByLibrary.simpleMessage("Statistics"),
         "addHabit": MessageLookupByLibrary.simpleMessage("Add habit"),
         "allHabits": MessageLookupByLibrary.simpleMessage("All habits"),
         "appTheme": MessageLookupByLibrary.simpleMessage("App Theme"),
@@ -33,22 +38,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "dailyHabits": MessageLookupByLibrary.simpleMessage("Daily Habits"),
         "dailyRoutine": MessageLookupByLibrary.simpleMessage("Daily routine"),
         "deleteAll": MessageLookupByLibrary.simpleMessage("Delete all"),
+        "doneLabelColor": MessageLookupByLibrary.simpleMessage("Achieved"),
         "emptyHabits": MessageLookupByLibrary.simpleMessage(
             "You haven\'\'t add any habits yet"),
         "endlish": MessageLookupByLibrary.simpleMessage("English"),
-        "fri": MessageLookupByLibrary.simpleMessage("F"),
+        "habitStartingDate":
+            MessageLookupByLibrary.simpleMessage("Habit starting date"),
         "help": MessageLookupByLibrary.simpleMessage("Help & Suggestions"),
         "lang": MessageLookupByLibrary.simpleMessage("Language"),
-        "mon": MessageLookupByLibrary.simpleMessage("M"),
+        "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "notAchieved": MessageLookupByLibrary.simpleMessage("Not acheived"),
         "notification": MessageLookupByLibrary.simpleMessage("Notifications"),
-        "sat": MessageLookupByLibrary.simpleMessage("S"),
+        "onboardingtwo": MessageLookupByLibrary.simpleMessage(""),
+        "onboradingone":
+            MessageLookupByLibrary.simpleMessage("Welcome in Dawm"),
+        "onboradingonedetail": MessageLookupByLibrary.simpleMessage(""),
         "searchZikr":
             MessageLookupByLibrary.simpleMessage("Search for zikr..."),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
-        "sun": MessageLookupByLibrary.simpleMessage("S"),
-        "thr": MessageLookupByLibrary.simpleMessage("T"),
-        "tue": MessageLookupByLibrary.simpleMessage("T"),
-        "wed": MessageLookupByLibrary.simpleMessage("W")
+        "trackHabit": MessageLookupByLibrary.simpleMessage("Track habit")
       };
 }

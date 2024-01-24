@@ -11,6 +11,7 @@ environment:
 dependencies:
   blurrycontainer: ^1.0.2
   build_runner: ^2.4.7
+  calendar_date_picker2: ^0.5.3
   cupertino_icons: ^1.0.2
   easy_date_timeline: ^1.0.2
   flutter:
@@ -21,12 +22,13 @@ dependencies:
   go_router: ^12.1.1
   modal_progress_hud_nsn: ^0.4.0
   path_provider: ^2.1.2
+  percent_indicator: ^4.2.3
   persistent_bottom_nav_bar: ^5.0.2
+  shared_preferences: ^2.2.2
+  smooth_page_indicator: ^1.1.0
   sqflite: ^2.3.0
-  calendar_date_picker2: ^0.5.3
 
 dev_dependencies:
-
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter

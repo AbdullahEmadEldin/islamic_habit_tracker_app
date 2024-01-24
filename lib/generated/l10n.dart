@@ -50,11 +50,11 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Zikr Collector`
-  String get ZikrCollector {
+  /// `dawm`
+  String get Dawm {
     return Intl.message(
-      'Zikr Collector',
-      name: 'ZikrCollector',
+      'dawm',
+      name: 'Dawm',
       desc: '',
       args: [],
     );
@@ -75,76 +75,6 @@ class S {
     return Intl.message(
       'Daily routine',
       name: 'dailyRoutine',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `S`
-  String get sat {
-    return Intl.message(
-      'S',
-      name: 'sat',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `S`
-  String get sun {
-    return Intl.message(
-      'S',
-      name: 'sun',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `M`
-  String get mon {
-    return Intl.message(
-      'M',
-      name: 'mon',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `T`
-  String get tue {
-    return Intl.message(
-      'T',
-      name: 'tue',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `W`
-  String get wed {
-    return Intl.message(
-      'W',
-      name: 'wed',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `T`
-  String get thr {
-    return Intl.message(
-      'T',
-      name: 'thr',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `F`
-  String get fri {
-    return Intl.message(
-      'F',
-      name: 'fri',
       desc: '',
       args: [],
     );
@@ -305,6 +235,126 @@ class S {
     return Intl.message(
       'Delete all',
       name: 'deleteAll',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Track habit`
+  String get trackHabit {
+    return Intl.message(
+      'Track habit',
+      name: 'trackHabit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Statistics`
+  String get Statistics {
+    return Intl.message(
+      'Statistics',
+      name: 'Statistics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Habit starting date`
+  String get habitStartingDate {
+    return Intl.message(
+      'Habit starting date',
+      name: 'habitStartingDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Acheivement percentage`
+  String get AcheivementPercent {
+    return Intl.message(
+      'Acheivement percentage',
+      name: 'AcheivementPercent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Achieved`
+  String get doneLabelColor {
+    return Intl.message(
+      'Achieved',
+      name: 'doneLabelColor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not acheived`
+  String get notAchieved {
+    return Intl.message(
+      'Not acheived',
+      name: 'notAchieved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skip`
+  String get skip {
+    return Intl.message(
+      'Skip',
+      name: 'skip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome in Dawm`
+  String get onboradingone {
+    return Intl.message(
+      'Welcome in Dawm',
+      name: 'onboradingone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get onboradingonedetail {
+    return Intl.message(
+      '',
+      name: 'onboradingonedetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get onboardingtwo {
+    return Intl.message(
+      '',
+      name: 'onboardingtwo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete all data`
+  String get DeleteAllData {
+    return Intl.message(
+      'Delete all data',
+      name: 'DeleteAllData',
       desc: '',
       args: [],
     );

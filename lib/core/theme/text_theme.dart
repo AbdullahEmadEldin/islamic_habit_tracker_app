@@ -21,6 +21,7 @@ class AppTextThemes {
     displayMedium: TextStyle(
       fontFamily: 'arabic_typesetting',
       fontSize: 21.0,
+      color: Color(0xff470550),
     ),
     displaySmall: TextStyle(
       fontFamily: 'arabic_typesetting',
@@ -33,8 +34,12 @@ class AppTextThemes {
       fontWeight: FontWeight.w600,
     ),
     titleMedium: TextStyle(
+      fontFamily: 'arabic_typesetting',
+      fontSize: 18.0,
+      fontWeight: FontWeight.normal,
+    ),
+    titleSmall: TextStyle(
       fontFamily: 'ArefRuqaa-Regular',
-      fontSize: 20.0,
       fontWeight: FontWeight.normal,
     ),
     headlineLarge: TextStyle(

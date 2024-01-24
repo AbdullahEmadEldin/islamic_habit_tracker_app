@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:islamic_habit_tracker/core/theme/text_theme.dart';
 
-Color lBackground = const Color(0xffF2E9E9);
-Color lForeground = const Color(0xff470550);
-Color lSecondaryBackground = const Color(0xFFF5ECFF);
-Color lContainerColor = const Color.fromARGB(255, 184, 176, 233);
+abstract class AppColors {
+  static Color splashBackground = const Color.fromARGB(255, 204, 193, 218);
+  static Color lBackground = const Color(0xffF2E9E9);
+  static Color lForeground = const Color(0xff470550).withOpacity(0.5);
+  static Color lSecondaryBackground = const Color(0xFFF5ECFF);
+  static Color lContainerColor = const Color.fromARGB(255, 184, 176, 233);
+  static Color doneDayColor =
+      const Color.fromARGB(255, 51, 128, 53).withOpacity(0.3);
+  static Color doneDayborderColor = const Color.fromARGB(255, 86, 241, 91);
+  static Color falseDayColor =
+      const Color.fromARGB(255, 167, 37, 28).withOpacity(0.3);
+  static Color falseDayborderColor = const Color.fromARGB(255, 252, 41, 25);
+  static Color onboardingForeground = const Color(0xff674D9D);
+}
 
 class AppThemes {
   static ThemeData lightAppTheme = ThemeData(
@@ -18,13 +28,9 @@ class AppThemes {
       ),
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: lForeground, elevation: 8),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      selectedItemColor: Colors.green,
-    ),
+        backgroundColor: AppColors.lForeground, elevation: 8),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-          foregroundColor: Colors.white,
           elevation: 6,
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(3)))),
