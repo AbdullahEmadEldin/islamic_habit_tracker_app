@@ -1,11 +1,16 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:blurrycontainer/blurrycontainer.dart';
+import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
+import 'package:islamic_habit_tracker/core/navigation/routes.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
 import 'package:islamic_habit_tracker/view/widgets/drop_menu_component.dart';
 import 'package:islamic_habit_tracker/view/widgets/setting_option.dart';
 import 'package:islamic_habit_tracker/view/widgets/switcher.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({Key? key}) : super(key: key);
@@ -21,21 +26,28 @@ class SettingsScreen extends StatelessWidget {
           Container(
             height: size.height * 0.32,
             decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(35),
-                    bottomRight: Radius.circular(35)),
-                color: lForeground.withOpacity(0.8)),
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(35),
+                  bottomRight: Radius.circular(35)),
+              gradient: LinearGradient(
+                  colors: [AppColors.lContainerColor, Color(0xff674D9D)]),
+              color: Color(0xff674D9D),
+            ),
           ),
           Positioned(
             top: size.height * 0.06,
             left: size.width * 0.65,
-            child: _buildSettingsHerder(context),
+            child: _buildSettingsHeader(context),
           ),
           _setttingsOptionsBuilder(size, context),
           Positioned(
               top: size.height * 0.5,
               left: size.width / 2 - 140,
-              child: Image.asset(AppAssets.settingsBanner))
+              child: Image.asset(
+                AppAssets.settingsBanner,
+                width: size.height * 0.32,
+                height: size.height * 0.32,
+              ))
         ],
       ),
     );
@@ -43,14 +55,15 @@ class SettingsScreen extends StatelessWidget {
 
   Positioned _setttingsOptionsBuilder(Size size, BuildContext context) {
     return Positioned(
-        top: 82,
+        top: 90,
         left: size.width / 2 - 140,
         child: Container(
-          height: size.height * 0.38,
+          height: size.height * 0.42,
           width: size.width * 0.7,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: lSecondaryBackground.withOpacity(0.3)),
+            borderRadius: BorderRadius.circular(20),
+            color: AppColors.lSecondaryBackground.withOpacity(0.3),
+          ),
           child: BlurryContainer(
             elevation: 7,
             child: Padding(
@@ -61,12 +74,14 @@ class SettingsScreen extends StatelessWidget {
                     icon: Icons.notifications,
                     setting: S.of(context).notification,
                     trailing: _switchNotifications(),
+                    ontap: () {},
                   ),
                   _buildDivider(),
                   SettingOption(
                     icon: Icons.sunny,
                     setting: S.of(context).appTheme,
                     trailing: _switchTheme(),
+                    ontap: () {},
                   ),
                   _buildDivider(),
                   SettingOption(
@@ -74,16 +89,30 @@ class SettingsScreen extends StatelessWidget {
                     setting: S.of(context).lang,
                     trailing: SizedBox(
                         height: size.height * 0.02, child: PopMenuComponent()),
+                    ontap: () {},
                   ),
                   _buildDivider(),
                   SettingOption(
                     icon: Icons.mail,
                     setting: S.of(context).help,
+                    ontap: () {},
+                  ),
+                  _buildDivider(),
+                  SettingOption(
+                    icon: Icons.delete_outline_outlined,
+                    setting: S.of(context).DeleteAllData,
+                    ontap: () {
+                      // final prefs = await SharedPreferences.getInstance();
+                      // prefs.setBool('showHome', false);
+                      print('a7aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+                      //   context.goNamed(AppRoutes.onBoarding);
+                    },
                   ),
                   _buildDivider(),
                   SettingOption(
                     icon: Icons.error,
                     setting: S.of(context).About,
+                    ontap: () {},
                   ),
                 ],
               ),
@@ -92,7 +121,7 @@ class SettingsScreen extends StatelessWidget {
         ));
   }
 
-  Widget _buildSettingsHerder(BuildContext context) {
+  Widget _buildSettingsHeader(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
