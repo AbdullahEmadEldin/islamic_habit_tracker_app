@@ -33,7 +33,7 @@ class AppRouter {
           routes: [
             GoRoute(
               name: AppRoutes.habitsDetails,
-              path: 'habitdetails',
+              path: 'habit_details',
               pageBuilder: (context, state) {
                 final habit = state.extra as Habit;
                 return MaterialPage(

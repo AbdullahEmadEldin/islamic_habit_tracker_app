@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:islamic_habit_tracker/core/navigation/routes.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 
 import 'package:islamic_habit_tracker/data/models/habit.dart';
@@ -140,27 +139,27 @@ class HabitsDetails extends StatelessWidget {
   Future<dynamic> _ensureDeleteHabitDialog(BuildContext context) {
     return showDialog(
       context: context,
-      builder: (contexttt) => AlertDialog(
+      builder: (dialogContext) => AlertDialog(
         content: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            S.of(contexttt).doYouWantRemoveHabit,
-            style: Theme.of(contexttt).textTheme.displayMedium,
+            S.of(dialogContext).doYouWantRemoveHabit,
+            style: Theme.of(dialogContext).textTheme.displayMedium,
           ),
         ),
         actions: [
           TextButton(
               onPressed: () {
                 BlocProvider.of<HabitsCubit>(context).deleteHabit(mainHabit);
-                Navigator.of(contexttt).pop(); // Pop from the dialog
+                Navigator.of(dialogContext).pop(); // Pop from the dialog
                 Navigator.of(context).pop();
               },
-              child: Text(S.of(contexttt).Yes)),
+              child: Text(S.of(dialogContext).Yes)),
           TextButton(
               onPressed: () {
-                contexttt.pop();
+                dialogContext.pop();
               },
-              child: Text(S.of(contexttt).NO))
+              child: Text(S.of(dialogContext).NO))
         ],
       ),
     );
