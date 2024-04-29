@@ -65,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
         "streak": MessageLookupByLibrary.simpleMessage("Streak"),
+        "textCoppied":
+            MessageLookupByLibrary.simpleMessage("Text copied to clipboard"),
         "trackHabit": MessageLookupByLibrary.simpleMessage("Track habit")
       };
 }

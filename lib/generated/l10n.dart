@@ -409,6 +409,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Text copied to clipboard`
+  String get textCoppied {
+    return Intl.message(
+      'Text copied to clipboard',
+      name: 'textCoppied',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

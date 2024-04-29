@@ -28,7 +28,7 @@ class AppRouter {
           path: '/bottomBar',
           pageBuilder: (context, state) => MaterialPage(
               child: BlocProvider(
-            create: (context) => HabitsCubit(db: locator.get<HabitDB>()),
+            create: (context) => locator.get<HabitsCubit>(),
             child: const BottomNavBar(),
           )),
           routes: [
@@ -38,12 +38,8 @@ class AppRouter {
               pageBuilder: (context, state) {
                 final habit = state.extra as Habit;
                 return MaterialPage(
-                  child: BlocProvider(
-                    create: (context) =>
-                        HabitsCubit(db: locator.get<HabitDB>()),
-                    child: HabitsDetails(
-                      mainHabit: habit,
-                    ),
+                  child: HabitsDetails(
+                    mainHabit: habit,
                   ),
                 );
               },

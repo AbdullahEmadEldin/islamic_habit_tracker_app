@@ -43,8 +43,8 @@ class _OnBordingCollectorState extends State<OnBordingCollector> {
             OnboardingBuilder(
               isFirst: true,
               image: Positioned(
-                top: size.height * 0.4,
-                right: size.width * 0.15,
+                top: size.height * 0.39,
+                right: size.width * 0.1,
                 child: Image.asset(
                   AppAssets.onboardOne,
                   width: 140,
@@ -52,19 +52,38 @@ class _OnBordingCollectorState extends State<OnBordingCollector> {
                 ),
               ),
               subtitle: S.of(context).onboradingonedetail,
+              illustratingImage: Positioned(
+                top: size.height * 0.6,
+                right: size.width * 0.45,
+                child: Image.asset(
+                  AppAssets.onboardingHome,
+                  width: 220,
+                  height: 220,
+                ),
+              ),
             ),
             OnboardingBuilder(
-                isFirst: false,
-                image: Positioned(
-                  top: size.height * 0.3,
-                  right: size.width * 0.25,
-                  child: Image.asset(
-                    AppAssets.mosque,
-                    width: 200,
-                    height: 200,
-                  ),
+              isFirst: false,
+              image: Positioned(
+                top: size.height * 0.25,
+                right: size.width * 0.25,
+                child: Image.asset(
+                  AppAssets.mosque,
+                  width: 200,
+                  height: 200,
                 ),
-                subtitle: S.of(context).onboardingtwo)
+              ),
+              subtitle: S.of(context).onboardingtwo,
+              illustratingImage: Positioned(
+                top: size.height * 0.59,
+                right: size.width * 0.4,
+                child: Image.asset(
+                  AppAssets.onboardingAzkar,
+                  width: 220,
+                  height: 220,
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -117,6 +136,7 @@ class _OnBordingCollectorState extends State<OnBordingCollector> {
         ///to naivgate directly to homePage after the first time
         final prefs = await SharedPreferences.getInstance();
         prefs.setBool('showHome', true);
+        print('********** ${prefs.getBool('showHome')}');
         context.goNamed(AppRoutes.homeScreen);
       },
       style: ButtonStyle(

@@ -152,8 +152,8 @@ class HabitsDetails extends StatelessWidget {
           TextButton(
               onPressed: () {
                 BlocProvider.of<HabitsCubit>(context).deleteHabit(mainHabit);
-                BlocProvider.of<HabitsCubit>(context).getHabits();
-                contexttt.goNamed(AppRoutes.homeScreen);
+                Navigator.of(contexttt).pop(); // Pop from the dialog
+                Navigator.of(context).pop();
               },
               child: Text(S.of(contexttt).Yes)),
           TextButton(

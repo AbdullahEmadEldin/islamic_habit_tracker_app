@@ -7,11 +7,13 @@ class OnboardingBuilder extends StatelessWidget {
   final bool isFirst;
   final Widget image;
   final String subtitle;
+  final Widget illustratingImage;
   const OnboardingBuilder({
     super.key,
     required this.isFirst,
     required this.image,
     required this.subtitle,
+    required this.illustratingImage,
   });
 
   @override
@@ -45,8 +47,8 @@ class OnboardingBuilder extends StatelessWidget {
           image,
           const SizedBox(height: 23),
           Positioned(
-            top: size.height * 0.55,
-            left: size.width * 0.2,
+            top: size.height * 0.49,
+            left: size.width * 0.14,
             child: SizedBox(
               width: size.width * 0.5,
               child: Text(
@@ -67,6 +69,7 @@ class OnboardingBuilder extends StatelessWidget {
             right: -320,
             child: Image.asset(AppAssets.clouds),
           ),
+          illustratingImage,
         ],
       ),
     );

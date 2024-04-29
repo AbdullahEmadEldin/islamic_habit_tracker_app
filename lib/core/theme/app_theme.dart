@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:islamic_habit_tracker/core/theme/text_theme.dart';
 
 abstract class AppColors {
+  ///lgiht theme colors
   static Color splashBackground = const Color.fromARGB(255, 204, 193, 218);
   static Color lBackground = const Color(0xffF2E9E9);
   static Color lForeground = const Color(0xff470550).withOpacity(0.5);
@@ -14,6 +15,9 @@ abstract class AppColors {
       const Color.fromARGB(255, 167, 37, 28).withOpacity(0.3);
   static Color falseDayborderColor = const Color.fromARGB(255, 252, 41, 25);
   static Color onboardingForeground = const Color(0xff674D9D);
+
+  ///dark theme colors
+  static Color dBackground = const Color(0xff292F3D);
 }
 
 class AppThemes {
@@ -40,7 +44,7 @@ class AppThemes {
 
   static ThemeData darkAppTheme = ThemeData(
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: Colors.black,
+    scaffoldBackgroundColor: AppColors.dBackground,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: Colors.green,
     ),

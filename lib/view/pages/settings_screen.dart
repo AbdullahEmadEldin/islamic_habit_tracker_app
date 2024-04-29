@@ -5,8 +5,10 @@ import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
+import 'package:islamic_habit_tracker/core/locator.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
+import 'package:islamic_habit_tracker/core/theme/theme_manager.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
 import 'package:islamic_habit_tracker/logic/cubit/habit_cubit.dart';
 import 'package:islamic_habit_tracker/view/widgets/drop_menu_component.dart';
@@ -59,7 +61,7 @@ class SettingsScreen extends StatelessWidget {
         top: 78,
         left: size.width / 2 - 140,
         child: Container(
-          height: size.height * 0.42,
+          height: size.height * 0.4,
           width: size.width * 0.7,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
@@ -75,13 +77,6 @@ class SettingsScreen extends StatelessWidget {
                     icon: Icons.notifications,
                     setting: S.of(context).notification,
                     trailing: _switchNotifications(),
-                    ontap: () {},
-                  ),
-                  _buildDivider(),
-                  SettingOption(
-                    icon: Icons.sunny,
-                    setting: S.of(context).appTheme,
-                    trailing: _switchTheme(),
                     ontap: () {},
                   ),
                   _buildDivider(),
@@ -151,18 +146,13 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget _switchTheme() {
-    return SizedBox(
-        height: 8,
-        child: Switcher(
-          switchValue: notificationON,
-        ));
-  }
-
   Widget _switchNotifications() {
     return SizedBox(
       height: 8,
-      child: Switcher(switchValue: notificationON),
+      child: NotificationSwitcher(
+        switchValue: notificationON,
+        onChanged: (value) {},
+      ),
     );
   }
 }

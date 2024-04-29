@@ -9,4 +9,6 @@ class AppAssets {
   static const String timeShedule = 'assets/images/scheedule.png';
   static const String onboardOne = 'assets/images/hourglass.png';
   static const String mosque = 'assets/images/ramadan.png';
+  static const String onboardingHome = 'assets/images/onboarding_home.png';
+  static const String onboardingAzkar = 'assets/images/onboarding_azlar.png';
 }

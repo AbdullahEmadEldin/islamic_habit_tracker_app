@@ -1,4 +1,7 @@
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/data/models/single_zikr.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
@@ -35,8 +38,31 @@ class ZikrTile extends StatelessWidget {
                       fontFamily: 'arabic_typesetting',
                       fontWeight: FontWeight.w300),
             ),
-            Text("${S.of(context).count} ${duaa.count}",
-                style: Theme.of(context).textTheme.displaySmall)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("${S.of(context).count} ${duaa.count}",
+                    style: Theme.of(context).textTheme.displaySmall),
+                GestureDetector(
+                  onTap: () {
+                    Clipboard.setData(ClipboardData(text: duaa.text));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        duration: const Duration(seconds: 2),
+                        content: Text(S.of(context).textCoppied),
+                      ),
+                    );
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.copy,
+                      color: Color(0xff470550),
+                    ),
+                  ),
+                )
+              ],
+            )
           ],
         ),
       ),

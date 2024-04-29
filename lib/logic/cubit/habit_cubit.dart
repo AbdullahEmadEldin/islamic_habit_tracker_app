@@ -35,6 +35,7 @@ class HabitsCubit extends Cubit<HabitsState> {
 
   void getHabits() async {
     try {
+      ///getting habits without dates  from database
       List<Map<String, dynamic>> habitsMap =
           await db.readData('SELECT * FROM ${db.habitTable}');
       List<Habit> habbits = habitsMap
@@ -43,6 +44,7 @@ class HabitsCubit extends Cubit<HabitsState> {
           )
           .toList();
 
+      ///getting dates from database && merging it to it's habit.
       for (int i = 0; i < habbits.length; i++) {
         List<Map<String, dynamic>> datesMap = await db.readData(
             'SELECT * FROM ${db.datesTable} WHERE id = ${habbits[i].id}');
@@ -67,6 +69,7 @@ class HabitsCubit extends Cubit<HabitsState> {
           .deleteData('DELETE FROM ${db.habitTable} WHERE id = ${habit.id}');
       await db
           .deleteData('DELETE FROM ${db.datesTable} WHERE id = ${habit.id}');
+      getHabits();
       print('Delteing habit with it history:: inside CCUUUBIT');
     } catch (e) {
       print('INside Cubbbbbit: rerror delete habit ${e.toString()}');
@@ -77,6 +80,7 @@ class HabitsCubit extends Cubit<HabitsState> {
     try {
       await db.deleteData('DELETE FROM ${db.habitTable}');
       await db.deleteData('DELETE FROM ${db.datesTable}');
+      getHabits();
     } catch (e) {
       print('INside Cubbbbbit: rerror rmove all habits ${e.toString()}');
     }

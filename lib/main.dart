@@ -8,8 +8,6 @@ import 'package:islamic_habit_tracker/core/theme/theme_manager.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-///this instance is the main and only instance to create database
-///you can use it to access store and create Box for each enitity
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setUp();
@@ -29,18 +27,19 @@ class AzkarApp extends StatefulWidget {
 class _AzkarAppState extends State<AzkarApp> {
   @override
 
-  ///these listners for switching theme
+  ///these listeners for switching theme
   @override
   void initState() {
     locator.get<ThemeManager>().addListener(themeListener);
-    locator.get<LocalizationManager>().addListener(languageLisnter);
+    locator.get<LocalizationManager>().addListener(languageListener);
+
     super.initState();
   }
 
   @override
   void dispose() {
     locator.get<ThemeManager>().removeListener(themeListener);
-    locator.get<LocalizationManager>().removeListener(languageLisnter);
+    locator.get<LocalizationManager>().removeListener(languageListener);
     super.dispose();
   }
 
@@ -50,7 +49,7 @@ class _AzkarAppState extends State<AzkarApp> {
     }
   }
 
-  languageLisnter() {
+  languageListener() {
     if (mounted) {
       setState(() {});
     }

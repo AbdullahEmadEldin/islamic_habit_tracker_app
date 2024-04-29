@@ -67,6 +67,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
         "start": MessageLookupByLibrary.simpleMessage("ابـــدأ"),
         "streak": MessageLookupByLibrary.simpleMessage("الأيام المتتالية"),
+        "textCoppied":
+            MessageLookupByLibrary.simpleMessage("تم النسخ الذكر إلى الحافظة"),
         "trackHabit": MessageLookupByLibrary.simpleMessage("تتبع العادة")
       };
 }

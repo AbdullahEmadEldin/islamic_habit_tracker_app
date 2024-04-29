@@ -54,15 +54,20 @@ class AppTextThemes {
       fontFamily: 'arabic_typesetting',
       fontSize: 14.0,
     ),
+    bodyMedium: TextStyle(
+      fontFamily: 'arabic_typesetting',
+      fontSize: 12.0,
+    ),
     displayLarge: TextStyle(
       fontFamily: 'arabic_typesetting',
       fontSize: 32.0,
       fontWeight: FontWeight.bold,
+      color: Color(0xff470550),
     ),
-    displayMedium: const TextStyle(
+    displayMedium: TextStyle(
       fontFamily: 'arabic_typesetting',
       fontSize: 21.0,
-      color: Colors.white,
+      color: Color(0xff470550),
     ),
     displaySmall: TextStyle(
       fontFamily: 'arabic_typesetting',
@@ -73,6 +78,20 @@ class AppTextThemes {
       fontFamily: 'arabic_typesetting',
       fontSize: 20.0,
       fontWeight: FontWeight.w600,
+    ),
+    titleMedium: TextStyle(
+      fontFamily: 'arabic_typesetting',
+      fontSize: 18.0,
+      fontWeight: FontWeight.normal,
+    ),
+    titleSmall: TextStyle(
+      fontFamily: 'ArefRuqaa-Regular',
+      fontWeight: FontWeight.normal,
+    ),
+    headlineLarge: TextStyle(
+      fontFamily: 'arabic_typesetting',
+      fontSize: 48.0,
+      fontWeight: FontWeight.normal,
     ),
   );
 }

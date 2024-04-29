@@ -70,6 +70,7 @@
     "DeleteAllData":"Delete all data",
     "@DeleteAllData": {},
     "notSartingYet":"Not starting yet",
-    "@notSartingYet": {}
-
+    "@notSartingYet": {},
+    "textCoppied":"Text copied to clipboard",
+    "@textCoppied": {}
 }

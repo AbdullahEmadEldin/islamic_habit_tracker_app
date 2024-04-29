@@ -8,6 +8,7 @@ import 'package:islamic_habit_tracker/core/navigation/routes.dart';
 import 'package:islamic_habit_tracker/data/models/habit.dart';
 import 'package:islamic_habit_tracker/data/models/tracking_date.dart';
 import 'package:islamic_habit_tracker/logic/cubit/habit_cubit.dart';
+import 'package:islamic_habit_tracker/view/pages/habits_details.dart';
 import 'package:islamic_habit_tracker/view/widgets/empty_habit.dart';
 
 class HabitTile extends StatefulWidget {
@@ -24,9 +25,10 @@ class _HabitTileState extends State<HabitTile> {
     BlocProvider.of<HabitsCubit>(context).getHabits();
     return BlocBuilder<HabitsCubit, HabitsState>(
       builder: (context, state) {
+        print('Reeeeeeebuiled');
         if (state is SucessHabits) {
           if (state.habits.isEmpty) {
-            return EmptyHabit();
+            return const EmptyHabit();
           }
           return ListView.builder(
               shrinkWrap: true,
@@ -55,8 +57,14 @@ class _HabitTileState extends State<HabitTile> {
                   }
                 }
                 return InkWell(
-                  onTap: () => context.goNamed(AppRoutes.habitsDetails,
-                      extra: state.habits[i]),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              HabitsDetails(mainHabit: state.habits[i]),
+                        ));
+                  },
                   child: Container(
                     padding: const EdgeInsets.all(8),
                     margin: const EdgeInsets.all(8),
