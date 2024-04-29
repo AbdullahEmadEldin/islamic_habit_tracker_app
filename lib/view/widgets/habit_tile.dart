@@ -7,7 +7,7 @@ import 'package:islamic_habit_tracker/core/helpers.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
 import 'package:islamic_habit_tracker/data/models/habit.dart';
 import 'package:islamic_habit_tracker/data/models/tracking_date.dart';
-import 'package:islamic_habit_tracker/logic/cubit/habit_cubit.dart';
+import 'package:islamic_habit_tracker/logic/cubits/habit_cubit.dart';
 import 'package:islamic_habit_tracker/view/pages/habits_details.dart';
 import 'package:islamic_habit_tracker/view/widgets/empty_habit.dart';
 

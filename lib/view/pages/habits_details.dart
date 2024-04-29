@@ -7,7 +7,7 @@ import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 
 import 'package:islamic_habit_tracker/data/models/habit.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
-import 'package:islamic_habit_tracker/logic/cubit/habit_cubit.dart';
+import 'package:islamic_habit_tracker/logic/cubits/habit_cubit.dart';
 import 'package:islamic_habit_tracker/view/widgets/tracking_calendar.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 

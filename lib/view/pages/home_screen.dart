@@ -7,7 +7,7 @@ import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/data/models/habit.dart';
 import 'package:islamic_habit_tracker/data/service/notification_service.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
-import 'package:islamic_habit_tracker/logic/cubit/habit_cubit.dart';
+import 'package:islamic_habit_tracker/logic/cubits/habit_cubit.dart';
 import 'package:islamic_habit_tracker/view/pages/azkar_screen.dart';
 import 'package:islamic_habit_tracker/view/widgets/habit_tile.dart';
 import 'package:islamic_habit_tracker/view/widgets/horizontal_date_picker.dart';
@@ -20,7 +20,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool isInputActive = false;  
+  bool isInputActive = false;
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<HabitsCubit>(context).getHabits();

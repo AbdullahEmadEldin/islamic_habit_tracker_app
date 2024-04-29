@@ -5,12 +5,10 @@ import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
-import 'package:islamic_habit_tracker/core/locator.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
-import 'package:islamic_habit_tracker/core/theme/theme_manager.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
-import 'package:islamic_habit_tracker/logic/cubit/habit_cubit.dart';
+import 'package:islamic_habit_tracker/logic/cubits/habit_cubit.dart';
 import 'package:islamic_habit_tracker/view/widgets/drop_menu_component.dart';
 import 'package:islamic_habit_tracker/view/widgets/setting_option.dart';
 import 'package:islamic_habit_tracker/view/widgets/switcher.dart';
@@ -42,7 +40,7 @@ class SettingsScreen extends StatelessWidget {
             left: size.width * 0.65,
             child: _buildSettingsHeader(context),
           ),
-          _setttingsOptionsBuilder(size, context),
+          _settingsOptionsBuilder(size, context),
           Positioned(
               top: size.height * 0.5,
               left: size.width / 2 - 140,
@@ -56,7 +54,7 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget _setttingsOptionsBuilder(Size size, BuildContext context) {
+  Widget _settingsOptionsBuilder(Size size, BuildContext context) {
     return Positioned(
         top: 78,
         left: size.width / 2 - 140,
@@ -77,7 +75,8 @@ class SettingsScreen extends StatelessWidget {
                     icon: Icons.notifications,
                     setting: S.of(context).notification,
                     trailing: _switchNotifications(),
-                    ontap: () {},
+                    onTap: () {},
+                    isClickable: false,
                   ),
                   _buildDivider(),
                   SettingOption(
@@ -85,19 +84,20 @@ class SettingsScreen extends StatelessWidget {
                     setting: S.of(context).lang,
                     trailing: SizedBox(
                         height: size.height * 0.02, child: PopMenuComponent()),
-                    ontap: () {},
+                    onTap: () {},
+                    isClickable: false,
                   ),
                   _buildDivider(),
                   SettingOption(
                     icon: Icons.mail,
                     setting: S.of(context).help,
-                    ontap: () {},
+                    onTap: () {},
                   ),
                   _buildDivider(),
                   SettingOption(
                     icon: Icons.delete_outline_outlined,
                     setting: S.of(context).DeleteAllData,
-                    ontap: () async {
+                    onTap: () async {
                       final prefs = await SharedPreferences.getInstance();
                       BlocProvider.of<HabitsCubit>(context).deleteAllHabits();
                       prefs.setBool('showHome', false);
@@ -108,7 +108,7 @@ class SettingsScreen extends StatelessWidget {
                   SettingOption(
                     icon: Icons.error,
                     setting: S.of(context).About,
-                    ontap: () {},
+                    onTap: () {},
                   ),
                 ],
               ),

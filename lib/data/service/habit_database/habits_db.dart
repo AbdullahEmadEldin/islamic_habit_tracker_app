@@ -30,12 +30,12 @@ class HabitDB {
   }
 
   String habitTable = 'habits';
-  String datesTable = 'trackingdates';
+  String datesTable = 'trackingDates';
 
   /// create data base tables
   /// this method called once when data base is initialized
   _onCreate(Database db, int version) async {
-    /// we added ''' at firsr and end of the sql order to enable multilines writing for sql code
+    /// we added ''' at first and end of the sql order to enable multi-lines writing for sql code
     ///execute method takes Sql code (has it's own syntax)
 
     Batch dbBatch = db.batch();
@@ -54,7 +54,7 @@ class HabitDB {
   )
 ''');
     await dbBatch.commit();
-    print('_oncreate function called to created data base table===========');
+    print('_onCreate function called to created data base table===========');
   }
 
   ///called when there is an update on the data base tables(Structure)
