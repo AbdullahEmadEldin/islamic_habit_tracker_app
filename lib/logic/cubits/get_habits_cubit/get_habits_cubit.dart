@@ -9,7 +9,7 @@ part 'get_habits_state.dart';
 class GetHabitsCubit extends Cubit<GetHabitsState> {
   final HabitDB db = HabitDB();
   GetHabitsCubit() : super(GetHabitsInitial());
-  void getHabits() async {
+  Future<void> getHabits() async {
     emit(GetHabitsLoading());
     try {
       ///getting habits without dates  from database

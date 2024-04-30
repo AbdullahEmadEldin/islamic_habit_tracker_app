@@ -7,7 +7,11 @@ final class DeleteHabitsInitial extends DeleteHabitsState {}
 
 final class DeleteHabitsLoading extends DeleteHabitsState {}
 
-final class DeleteHabitsSuccess extends DeleteHabitsState {}
+final class DeleteHabitsSuccess extends DeleteHabitsState {
+  final int habitId;
+
+  DeleteHabitsSuccess({required this.habitId});
+}
 
 final class DeleteHabitsFailure extends DeleteHabitsState {
   final String errorMsg;

@@ -5,7 +5,9 @@ import 'package:islamic_habit_tracker/core/locator.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
 import 'package:islamic_habit_tracker/data/models/azkar_category.dart';
 import 'package:islamic_habit_tracker/data/models/habit.dart';
-import 'package:islamic_habit_tracker/logic/cubits/habit_cubit.dart';
+import 'package:islamic_habit_tracker/logic/cubits/create_habit_cubit/create_habit_cubit.dart';
+import 'package:islamic_habit_tracker/logic/cubits/delete_habits_cubits/delete_habits_cubit.dart';
+import 'package:islamic_habit_tracker/logic/cubits/get_habits_cubit/get_habits_cubit.dart';
 import 'package:islamic_habit_tracker/view/pages/azkar_details.dart';
 import 'package:islamic_habit_tracker/view/pages/bottom_nav_bar.dart';
 import 'package:islamic_habit_tracker/view/pages/habits_details.dart';
@@ -20,14 +22,24 @@ class AppRouter {
           name: AppRoutes.onBoarding,
           path: '/onBoarding',
           pageBuilder: (context, state) =>
-              const MaterialPage(child: OnBordingCollector()),
+              const MaterialPage(child: OnBoardingCollector()),
         ),
         GoRoute(
           name: AppRoutes.homeScreen,
           path: '/bottomBar',
           pageBuilder: (context, state) => MaterialPage(
-              child: BlocProvider(
-            create: (context) => locator.get<HabitsCubit>(),
+              child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => GetHabitsCubit(),
+              ),
+              BlocProvider(
+                create: (context) => DeleteHabitsCubit(),
+              ),
+              BlocProvider(
+                create: (context) => CreateHabitCubit(),
+              )
+            ],
             child: const BottomNavBar(),
           )),
           routes: [

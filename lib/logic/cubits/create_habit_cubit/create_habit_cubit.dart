@@ -10,12 +10,12 @@ class CreateHabitCubit extends Cubit<CreateHabitState> {
   final HabitDB db = HabitDB();
   CreateHabitCubit() : super(CreateHabitInitial());
 
-  void createHabit(Habit habit) async {
-    emit(CreateHabitSuccess());
+  Future<void> createHabit(Habit habit) async {
+    emit(CreateHabitLoading());
     try {
       await db.createData(
           " INSERT INTO ${db.habitTable} ('habitName') VALUES ('${habit.habitName}')");
-      _addTrackDate(habit, TrackDate(date: DateTime.now(), done: true));
+      addTrackDate(habit, TrackDate(date: DateTime.now(), done: true));
       emit(CreateHabitSuccess());
     } catch (e) {
       print('INside Create Cubit: error::::  createHabit ${e.toString()}');
@@ -23,7 +23,7 @@ class CreateHabitCubit extends Cubit<CreateHabitState> {
     }
   }
 
-  void _addTrackDate(Habit habit, TrackDate date) async {
+  void addTrackDate(Habit habit, TrackDate date) async {
     try {
       await db.createData('''
        INSERT INTO "${db.datesTable}" ("id", "date", "done")

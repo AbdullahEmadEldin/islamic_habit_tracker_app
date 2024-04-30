@@ -5,9 +5,11 @@ import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
+import 'package:islamic_habit_tracker/core/locator.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
+import 'package:islamic_habit_tracker/logic/cubits/delete_habits_cubits/delete_habits_cubit.dart';
 import 'package:islamic_habit_tracker/logic/cubits/habit_cubit.dart';
 import 'package:islamic_habit_tracker/view/widgets/drop_menu_component.dart';
 import 'package:islamic_habit_tracker/view/widgets/setting_option.dart';
@@ -99,8 +101,9 @@ class SettingsScreen extends StatelessWidget {
                     setting: S.of(context).DeleteAllData,
                     onTap: () async {
                       final prefs = await SharedPreferences.getInstance();
-                      BlocProvider.of<HabitsCubit>(context).deleteAllHabits();
-                      prefs.setBool('showHome', false);
+                      BlocProvider.of<DeleteHabitsCubit>(context)
+                          .deleteAllHabits();
+                      await prefs.setBool('showHome', false);
                       context.goNamed(AppRoutes.onBoarding);
                     },
                   ),

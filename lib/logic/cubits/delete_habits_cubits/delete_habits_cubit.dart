@@ -11,14 +11,17 @@ class DeleteHabitsCubit extends Cubit<DeleteHabitsState> {
 
   /// Delete single habit from habit details screen
   void deleteHabit(Habit habit) async {
+    emit(DeleteAllHabitsLoading());
     try {
       await db
           .deleteData('DELETE FROM ${db.habitTable} WHERE id = ${habit.id}');
       await db
           .deleteData('DELETE FROM ${db.datesTable} WHERE id = ${habit.id}');
       print('Delteing habit with it history:: inside CCUUUBIT');
+      emit(DeleteHabitsSuccess(habitId: habit.id!));
     } catch (e) {
       print('INside Cubbbbbit: rerror delete habit ${e.toString()}');
+      emit(DeleteAllHabitsFailure(errorMsg: e.toString()));
     }
   }
 

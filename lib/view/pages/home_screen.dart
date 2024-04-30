@@ -3,13 +3,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
+import 'package:islamic_habit_tracker/core/locator.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/data/models/habit.dart';
-import 'package:islamic_habit_tracker/data/service/notification_service.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
-import 'package:islamic_habit_tracker/logic/cubits/habit_cubit.dart';
-import 'package:islamic_habit_tracker/view/pages/azkar_screen.dart';
-import 'package:islamic_habit_tracker/view/widgets/habit_tile.dart';
+import 'package:islamic_habit_tracker/logic/cubits/create_habit_cubit/create_habit_cubit.dart';
+import 'package:islamic_habit_tracker/logic/cubits/delete_habits_cubits/delete_habits_cubit.dart';
+import 'package:islamic_habit_tracker/view/widgets/habits_list_view.dart';
 import 'package:islamic_habit_tracker/view/widgets/horizontal_date_picker.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,10 +20,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late CreateHabitCubit createHabitCubit;
   bool isInputActive = false;
+  bool createHabitLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    createHabitCubit = BlocProvider.of<CreateHabitCubit>(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<HabitsCubit>(context).getHabits();
     final size = MediaQuery.of(context).size;
     final textTheme = Theme.of(context).textTheme;
 
@@ -37,8 +45,17 @@ class _HomeScreenState extends State<HomeScreen> {
               _buildLogoHeader(context),
               _buildDatePickerHeader(size, context, textTheme),
               isInputActive
-                  ? _createNewHabit(size, context)
-                  : const HabitTile(habits: []),
+                  ? BlocListener<CreateHabitCubit, CreateHabitState>(
+                      listener: (context, state) {
+                        if (state is CreateHabitLoading) {
+                          createHabitLoading = true;
+                        }
+                      },
+                      child: createHabitLoading
+                          ? const Center(child: CircularProgressIndicator())
+                          : _createNewHabit(size, context),
+                    )
+                  : const HabitsListView(),
             ],
           ),
         ),
@@ -120,6 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           onPressed: () {
             isInputActive = true;
+            createHabitLoading = false;
             setState(() {});
           },
           child: const Icon(Icons.add)),
@@ -137,7 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
               isInputActive = false;
             } else {
               isInputActive = false;
-              BlocProvider.of<HabitsCubit>(context).createHabit(
+              createHabitCubit.createHabit(
                 Habit(
                   habitName: habitName,
                   trakingDates: [],

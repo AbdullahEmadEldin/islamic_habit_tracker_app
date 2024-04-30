@@ -9,14 +9,14 @@ import 'package:islamic_habit_tracker/view/pages/splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class OnBordingCollector extends StatefulWidget {
-  const OnBordingCollector({Key? key}) : super(key: key);
+class OnBoardingCollector extends StatefulWidget {
+  const OnBoardingCollector({Key? key}) : super(key: key);
 
   @override
-  _OnBordingCollectorState createState() => _OnBordingCollectorState();
+  _OnBoardingCollectorState createState() => _OnBoardingCollectorState();
 }
 
-class _OnBordingCollectorState extends State<OnBordingCollector> {
+class _OnBoardingCollectorState extends State<OnBoardingCollector> {
   final _pageViewController = PageController();
   bool isLastPage = false;
   @override

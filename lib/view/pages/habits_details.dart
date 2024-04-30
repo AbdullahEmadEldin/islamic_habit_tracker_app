@@ -2,11 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:islamic_habit_tracker/core/locator.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 
 import 'package:islamic_habit_tracker/data/models/habit.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
-import 'package:islamic_habit_tracker/logic/cubits/habit_cubit.dart';
+import 'package:islamic_habit_tracker/logic/cubits/delete_habits_cubits/delete_habits_cubit.dart';
 import 'package:islamic_habit_tracker/view/widgets/tracking_calendar.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -150,7 +151,8 @@ class HabitsDetails extends StatelessWidget {
         actions: [
           TextButton(
               onPressed: () {
-                BlocProvider.of<HabitsCubit>(context).deleteHabit(mainHabit);
+                BlocProvider.of<DeleteHabitsCubit>(context)
+                    .deleteHabit(mainHabit);
                 Navigator.of(dialogContext).pop(); // Pop from the dialog
                 Navigator.of(context).pop();
               },
