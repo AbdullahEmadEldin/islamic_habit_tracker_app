@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:islamic_habit_tracker/core/locator.dart';
 import 'package:islamic_habit_tracker/core/theme/theme_manager.dart';
 import 'package:islamic_habit_tracker/data/service/notification_service.dart';
-import 'package:islamic_habit_tracker/view/pages/azkar_screen.dart';
+import 'package:islamic_habit_tracker/app/azkar/view/pages/azkar_screen.dart';
 
 class NotificationSwitcher extends StatefulWidget {
   bool switchValue;

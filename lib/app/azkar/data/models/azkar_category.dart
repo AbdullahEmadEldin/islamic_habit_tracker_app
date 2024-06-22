@@ -1,4 +1,4 @@
-import 'package:islamic_habit_tracker/data/models/single_zikr.dart';
+import 'package:islamic_habit_tracker/app/azkar/data/models/single_zikr.dart';
 
 class ZikrCategory {
   int id;

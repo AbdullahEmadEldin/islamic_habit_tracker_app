@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
-import 'package:islamic_habit_tracker/view/pages/azkar_screen.dart';
+import 'package:islamic_habit_tracker/app/azkar/view/pages/azkar_screen.dart';
 import 'package:islamic_habit_tracker/view/pages/home_screen.dart';
 import 'package:islamic_habit_tracker/view/pages/settings_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';

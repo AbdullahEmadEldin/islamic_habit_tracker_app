@@ -3,12 +3,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
-import 'package:islamic_habit_tracker/core/locator.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/data/models/habit.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
 import 'package:islamic_habit_tracker/logic/cubits/create_habit_cubit/create_habit_cubit.dart';
-import 'package:islamic_habit_tracker/logic/cubits/delete_habits_cubits/delete_habits_cubit.dart';
 import 'package:islamic_habit_tracker/view/widgets/habits_list_view.dart';
 import 'package:islamic_habit_tracker/view/widgets/horizontal_date_picker.dart';
 
@@ -127,13 +125,13 @@ class _HomeScreenState extends State<HomeScreen> {
       left: size.width - 220,
       child: ElevatedButton(
           style: const ButtonStyle(
-            elevation: MaterialStatePropertyAll(15),
-            minimumSize: MaterialStatePropertyAll(Size(50, 50)),
-            backgroundColor: MaterialStatePropertyAll(
+            elevation: WidgetStatePropertyAll(15),
+            minimumSize: WidgetStatePropertyAll(Size(50, 50)),
+            backgroundColor: WidgetStatePropertyAll(
               Color.fromARGB(255, 149, 136, 235),
             ),
-            foregroundColor: MaterialStatePropertyAll(Colors.white),
-            shape: MaterialStatePropertyAll(CircleBorder()),
+            foregroundColor: WidgetStatePropertyAll(Colors.white),
+            shape: WidgetStatePropertyAll(CircleBorder()),
           ),
           onPressed: () {
             isInputActive = true;
