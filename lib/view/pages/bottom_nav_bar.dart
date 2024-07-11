@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
-import 'package:islamic_habit_tracker/view/pages/azkar_screen.dart';
+import 'package:islamic_habit_tracker/app/azkar/view/pages/azkar_screen.dart';
 import 'package:islamic_habit_tracker/view/pages/home_screen.dart';
 import 'package:islamic_habit_tracker/view/pages/settings_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
@@ -29,19 +29,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.home),
         title: "Home",
-        activeColorPrimary: AppColors.onboardingForeground,
+        activeColorPrimary: AppColors.primary,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.book_circle),
         title: "Azkar",
-        activeColorPrimary: AppColors.onboardingForeground,
+        activeColorPrimary: AppColors.primary,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.settings),
         title: "Settings",
-        activeColorPrimary: AppColors.onboardingForeground,
+        activeColorPrimary: AppColors.primary,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
     ];
@@ -55,7 +55,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         screens: _buildScreens(),
         items: _navBarsItems(),
         confineInSafeArea: true,
-        backgroundColor: Color(0xffCFC7E9),
+        backgroundColor: Color.fromARGB(255, 211, 205, 231),
         handleAndroidBackButtonPress: true, // Default is true.
         resizeToAvoidBottomInset:
             true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.

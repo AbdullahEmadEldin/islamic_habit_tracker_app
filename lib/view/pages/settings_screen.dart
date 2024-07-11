@@ -26,13 +26,15 @@ class SettingsScreen extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           Container(
-            height: size.height * 0.55,
+            height: size.height * 0.4,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(35),
-                  bottomRight: Radius.circular(35)),
-              gradient: LinearGradient(
-                  colors: [AppColors.lContainerColor, Color(0xff674D9D)]),
+                  bottomLeft: Radius.circular(16),
+                  bottomRight: Radius.circular(16)),
+              gradient: LinearGradient(colors: [
+                AppColors.lContainerColor,
+                AppColors.primary,
+              ]),
             ),
           ),
           Positioned(

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:islamic_habit_tracker/data/models/azkar_category.dart';
+import 'package:islamic_habit_tracker/app/azkar/data/models/azkar_category.dart';
 
 class AzkarService {
   Future<List<ZikrCategory>> loadZikrCategories() async {
