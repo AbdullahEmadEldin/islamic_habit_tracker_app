@@ -5,7 +5,7 @@ abstract class AppColors {
   ///lgiht theme colors
   static Color splashBackground = const Color.fromARGB(255, 204, 193, 218);
   static Color lBackground = const Color(0xffF2E9E9);
-  static Color lForeground = const Color(0xff470550).withOpacity(0.5);
+  static Color lForeground = const Color(0xFF7B6C96);
   static Color lSecondaryBackground = const Color(0xFFF5ECFF);
   static Color lContainerColor = const Color.fromARGB(255, 184, 176, 233);
   static Color doneDayColor =
@@ -14,7 +14,10 @@ abstract class AppColors {
   static Color falseDayColor =
       const Color.fromARGB(255, 167, 37, 28).withOpacity(0.3);
   static Color falseDayborderColor = const Color.fromARGB(255, 252, 41, 25);
-  static Color onboardingForeground = const Color(0xff674D9D);
+
+  static Color primary = const Color(0xff674D9D);
+  static Color palePrimary = const Color(0xFF7B6C96);
+  static Color lightPrimary = const Color.fromARGB(255, 211, 205, 231);
 
   ///dark theme colors
   static Color dBackground = const Color(0xff292F3D);

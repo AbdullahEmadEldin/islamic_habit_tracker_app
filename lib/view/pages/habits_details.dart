@@ -35,7 +35,7 @@ class HabitsDetails extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                    color: AppColors.onboardingForeground,
+                    color: AppColors.primary,
                     borderRadius: BorderRadius.circular(10)),
                 child: Text(
                   mainHabit.habitName,

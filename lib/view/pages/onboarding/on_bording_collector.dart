@@ -113,7 +113,7 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
                         effect: WormEffect(
                           dotHeight: 8,
                           radius: 16,
-                          activeDotColor: AppColors.onboardingForeground,
+                          activeDotColor: AppColors.primary,
                           dotColor: const Color.fromARGB(255, 216, 213, 213),
                         ),
                       ),
@@ -143,7 +143,7 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
           minimumSize:
               MaterialStateProperty.all(Size.fromHeight(size.height * 0.1)),
           backgroundColor: MaterialStatePropertyAll(
-            AppColors.onboardingForeground,
+            AppColors.primary,
           )),
       child: Text(
         S.of(context).start,
@@ -159,16 +159,15 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
     return ElevatedButton(
       onPressed: ontap,
       style: ButtonStyle(
-        shape: const MaterialStatePropertyAll(
+        shape: const WidgetStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(20),
             ),
           ),
         ),
-        backgroundColor:
-            MaterialStatePropertyAll(AppColors.onboardingForeground),
-        foregroundColor: const MaterialStatePropertyAll(Colors.white),
+        backgroundColor: WidgetStatePropertyAll(AppColors.primary),
+        foregroundColor: const WidgetStatePropertyAll(Colors.white),
       ),
       child: Text(text),
     );

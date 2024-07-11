@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
+import 'package:islamic_habit_tracker/core/theme/app_colors.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/data/models/habit.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
@@ -122,16 +123,16 @@ class _HomeScreenState extends State<HomeScreen> {
   Positioned _addTaskButton(Size size, BuildContext context) {
     return Positioned(
       top: size.height * 0.17,
-      left: size.width - 220,
+      left: size.width / 2.35,
       child: ElevatedButton(
-          style: const ButtonStyle(
-            elevation: WidgetStatePropertyAll(15),
-            minimumSize: WidgetStatePropertyAll(Size(50, 50)),
+          style: ButtonStyle(
+            elevation: const WidgetStatePropertyAll(15),
+            minimumSize: const WidgetStatePropertyAll(Size(50, 50)),
             backgroundColor: WidgetStatePropertyAll(
-              Color.fromARGB(255, 149, 136, 235),
+              AppColors.primary.withOpacity(0.7),
             ),
-            foregroundColor: WidgetStatePropertyAll(Colors.white),
-            shape: WidgetStatePropertyAll(CircleBorder()),
+            foregroundColor: const WidgetStatePropertyAll(Colors.white),
+            shape: const WidgetStatePropertyAll(CircleBorder()),
           ),
           onPressed: () {
             isInputActive = true;
