@@ -5,6 +5,7 @@ import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
+import 'package:islamic_habit_tracker/core/cache/cache_helper.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
@@ -100,11 +101,12 @@ class SettingsScreen extends StatelessWidget {
                     icon: Icons.delete_outline_outlined,
                     setting: S.of(context).DeleteAllData,
                     onTap: () async {
-                      final prefs = await SharedPreferences.getInstance();
                       BlocProvider.of<DeleteHabitsCubit>(context)
                           .deleteAllHabits();
-                      await prefs.setBool('showHome', false);
-                      context.goNamed(AppRoutes.onBoarding);
+                      await CacheHelper.saveData(key: 'showHome', value: false)
+                          .then(
+                        (v) => context.goNamed(AppRoutes.onBoarding),
+                      );
                     },
                   ),
                   _buildDivider(),

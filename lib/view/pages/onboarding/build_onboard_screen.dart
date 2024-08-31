@@ -4,13 +4,14 @@ import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
 
 class OnboardingBuilder extends StatelessWidget {
+  /// In the first onBoarding the image position is different that others.
   final bool isFirst;
   final Widget image;
   final String subtitle;
   final Widget illustratingImage;
   const OnboardingBuilder({
     super.key,
-    required this.isFirst,
+    this.isFirst = false,
     required this.image,
     required this.subtitle,
     required this.illustratingImage,

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:islamic_habit_tracker/core/cache/cache_helper.dart';
 import 'package:islamic_habit_tracker/core/localization/localization_manager.dart';
 import 'package:islamic_habit_tracker/core/locator.dart';
 import 'package:islamic_habit_tracker/core/navigation/router.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/core/theme/theme_manager.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
   setUp();
-  final prefs = await SharedPreferences.getInstance();
-  final showHome = prefs.getBool('showHome') ?? false;
+  final showHome = CacheHelper.getData(key: 'showHome') ?? false;
   runApp(AzkarApp(showHome: showHome));
 }
 

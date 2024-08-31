@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
+import 'package:islamic_habit_tracker/core/cache/cache_helper.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
@@ -39,7 +40,10 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
             });
           },
           children: [
+            /// First onBoarding view
             const SplashScreen(),
+
+            ///
             OnboardingBuilder(
               isFirst: true,
               image: Positioned(
@@ -63,7 +67,6 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
               ),
             ),
             OnboardingBuilder(
-              isFirst: false,
               image: Positioned(
                 top: size.height * 0.25,
                 right: size.width * 0.25,
@@ -88,7 +91,7 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
         ),
       ),
       bottomSheet: isLastPage
-          ? _getSartedButton(context, size)
+          ? _getStartedButton(context, size)
           : Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(color: AppColors.lSecondaryBackground),
@@ -129,14 +132,12 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
     );
   }
 
-  ElevatedButton _getSartedButton(BuildContext context, Size size) {
+  ElevatedButton _getStartedButton(BuildContext context, Size size) {
     return ElevatedButton(
       onPressed: () async {
         ///Saving the state of starting the app
         ///to naivgate directly to homePage after the first time
-        final prefs = await SharedPreferences.getInstance();
-        prefs.setBool('showHome', true);
-        print('********** ${prefs.getBool('showHome')}');
+        CacheHelper.saveData(key: 'showHome', value: true);
         context.goNamed(AppRoutes.homeScreen);
       },
       style: ButtonStyle(
@@ -162,7 +163,7 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
         shape: const WidgetStatePropertyAll(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
-              Radius.circular(20),
+              Radius.circular(8),
             ),
           ),
         ),

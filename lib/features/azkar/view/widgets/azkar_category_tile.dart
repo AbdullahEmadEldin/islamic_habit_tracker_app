@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:islamic_habit_tracker/app/azkar/data/models/azkar_category.dart';
+import 'package:islamic_habit_tracker/features/azkar/data/models/azkar_category.dart';
 
 class AzkarCategoryTile extends StatelessWidget {
   final ZikrCategory zikrCategory;

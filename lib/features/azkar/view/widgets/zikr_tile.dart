@@ -3,7 +3,7 @@ import 'dart:isolate';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
-import 'package:islamic_habit_tracker/app/azkar/data/models/single_zikr.dart';
+import 'package:islamic_habit_tracker/features/azkar/data/models/single_zikr.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
 
 class ZikrTile extends StatelessWidget {

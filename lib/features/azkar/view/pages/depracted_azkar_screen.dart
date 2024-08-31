@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/constants.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
-import 'package:islamic_habit_tracker/app/azkar/data/models/azkar_category.dart';
-import 'package:islamic_habit_tracker/app/azkar/data/repo/azkar_service.dart';
+import 'package:islamic_habit_tracker/features/azkar/data/models/azkar_category.dart';
+import 'package:islamic_habit_tracker/features/azkar/data/repo/azkar_service.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
-import 'package:islamic_habit_tracker/app/azkar/view/widgets/azkar_category_tile.dart';
+import 'package:islamic_habit_tracker/features/azkar/view/widgets/azkar_category_tile.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 ///***=============================================================
