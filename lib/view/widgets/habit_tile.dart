@@ -25,8 +25,6 @@ class _HabitTileItemState extends State<HabitTileItem> {
           ?.singleWhere((element) => element.date == dateOnly);
 
       checkBoxBool = todayTrackingDate!.done;
-      print(
-          'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx $checkBoxBool ---- ${widget.habit.habitName}');
     }
     print(
         '0000000000000000000000000000000000000 $checkBoxBool ---- ${widget.habit.habitName}');
@@ -47,8 +45,10 @@ class _HabitTileItemState extends State<HabitTileItem> {
           margin: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             border: Border.all(
-                color: checkBoxBool ? Colors.transparent : Colors.grey),
-            borderRadius: BorderRadius.circular(16),
+                color: checkBoxBool
+                    ? Colors.transparent
+                    : Colors.grey.withOpacity(0.5)),
+            borderRadius: BorderRadius.circular(8),
             color: checkBoxBool
                 ? const Color.fromARGB(255, 184, 176, 233).withOpacity(0.3)
                 : null,
@@ -63,8 +63,8 @@ class _HabitTileItemState extends State<HabitTileItem> {
                         checkBoxBool ? TextDecoration.lineThrough : null),
               ),
               Checkbox(
-                  fillColor: MaterialStateProperty.resolveWith((states) {
-                    if (states.contains(MaterialState.selected)) {
+                  fillColor: WidgetStateProperty.resolveWith((states) {
+                    if (states.contains(WidgetState.selected)) {
                       return Colors.deepPurple;
                     } else {
                       return Colors.transparent;

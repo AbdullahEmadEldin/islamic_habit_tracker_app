@@ -61,13 +61,6 @@ class HabitsDetails extends StatelessWidget {
                     _ensureDeleteHabitDialog(context);
                   },
                   icon: Icon(Icons.delete, color: AppColors.primary),
-                  // Text(
-                  //   S.of(context).deleteHabit,
-                  //   style: Theme.of(context)
-                  //       .textTheme
-                  //       .displayMedium!
-                  //       .copyWith(fontWeight: FontWeight.bold),
-                  // ),
                 )
               ],
             ),
