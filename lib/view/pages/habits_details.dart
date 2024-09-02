@@ -1,10 +1,11 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_print
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 
 import 'package:islamic_habit_tracker/data/models/habit.dart';
+import 'package:islamic_habit_tracker/data/models/tracking_date.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
 import 'package:islamic_habit_tracker/logic/cubits/delete_habits_cubits/delete_habits_cubit.dart';
 import 'package:islamic_habit_tracker/view/widgets/tracking_calendar.dart';
@@ -23,7 +24,9 @@ class HabitsDetails extends StatefulWidget {
 }
 
 class _HabitsDetailsState extends State<HabitsDetails> {
-  bool? historyExsist;
+  late List<TrackDate> habitDates;
+
+  bool historyExsist = false;
   DateTime? startingDate;
 
   @override
@@ -32,6 +35,7 @@ class _HabitsDetailsState extends State<HabitsDetails> {
     startingDate = historyExsist!
         ? widget.mainHabit.trakingDates!.first.date.toLocal()
         : null;
+    habitDates = historyExsist ? widget.mainHabit.trakingDates! : [];
     super.initState();
   }
 
@@ -78,7 +82,7 @@ class _HabitsDetailsState extends State<HabitsDetails> {
               ],
             ),
             TrackingCalender(
-                doneDates: testDates,
+                doneDates: habitDates.map((e) => e.date).toList(),
                 // widget.mainHabit.trakingDates!.map((e) => e.date).toList(),
                 notDoneDates: _calFalseDates()),
             Row(
@@ -177,47 +181,79 @@ class _HabitsDetailsState extends State<HabitsDetails> {
   }
 
   double _calculateDoneHabitPercent() {
-    int doneDays = 0;
-    for (int i = 0; i < widget.mainHabit.trakingDates!.length; i++) {
-      if (widget.mainHabit.trakingDates![i].done) {
-        doneDays++;
-      }
-    }
-    double percent = doneDays / widget.mainHabit.trakingDates!.length;
+    if (habitDates.isEmpty) return 0;
+    final List<DateTime> allDates =
+        habitDates.map((e) => e.date).toList() + _calFalseDates();
+
+    double percent = habitDates.length / allDates.length;
     return percent;
   }
 
   int _calStreakDays() {
-    int streak = 0;
-    for (int i = 0; i < widget.mainHabit.trakingDates!.length; i++) {
-      if (widget.mainHabit.trakingDates![i].done == false) break;
-      if (widget.mainHabit.trakingDates![i].done) streak++;
+    List<int> streaks = [];
+    if (habitDates.isEmpty || streaks.isEmpty) return 0;
+
+    /// initialized with 1 to count the first day in the streak
+    int streak = 1;
+    for (int i = 0; i < habitDates.length; i++) {
+      // i != 0 to avoid invalid index error.
+      if (i != 0) {
+        if (habitDates[i].date.difference(habitDates[i - 1].date).inDays == 1) {
+          streak++;
+
+          /// This condition to include the last streak in the streaks list.
+          if (i == habitDates.length - 1) {
+            streaks.add(streak);
+            print('STREAKS ::::: $streaks');
+          }
+        } else if (habitDates[i]
+                .date
+                .difference(habitDates[i - 1].date)
+                .inDays !=
+            1) {
+          print('habitDates after remove calculates streak ----> $habitDates');
+
+          /// this will include all the streaks in the streaks list
+          /// and then sorting then return the last streak (as it will be the longest one).
+          streaks.add(streak);
+          print('STREAKS ::::: $streaks');
+          streak = 1;
+        }
+      }
     }
-    return streak;
+    streaks.sort();
+    return streaks.last;
   }
 
   List<DateTime> _calFalseDates() {
+    if (habitDates.isEmpty) return [];
+
     /// the list of dates that coming from database will be the DONE dates.
     /// we will calculate from the starting date of the habit to the current date
     /// if any date in not in the done list it will be false.
     ///
     List<DateTime> falseDates = [];
-    for (DateTime date = testDates.first;
-        date.isBefore(DateTime.now().subtract(const Duration(days: 1)));
-        date = date.add(
-      Duration(days: 1),
-    ),) {
-      if (!testDates.contains(date)) {
-        print('==========>> Date $date is not in the testDates list');
+
+    for (DateTime date = habitDates.first.date; // starting date
+        /// this condition to check if the date is before yesterday...
+        /// WHY noy today ? --> because user may mark it as done at any time of the remaining day.
+        /// and we don't want to include that date in the false dates list until the day ends.
+        date.isBefore(DateTime.now().subtract(const Duration(days: 1))) &&
+
+            /// if there is one item in the list the above condition will ignore it and will make it false.
+            habitDates.length != 1;
+
+        /// This will increment the date until the 2nd condition is false then it will exit.
+        date = date.add(const Duration(days: 1))) {
+      if (!habitDates.contains(date)) {
         falseDates.add(date);
-        print('=========>>> false dates length ${falseDates.length}');
       }
     }
     return falseDates;
   }
 }
 
-List<DateTime> testDates = [
+List<DateTime> test = [
   DateTime(2024, 8, 5),
   DateTime(2024, 8, 6),
   DateTime(2024, 8, 7),
