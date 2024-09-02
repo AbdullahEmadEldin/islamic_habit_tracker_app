@@ -4,12 +4,13 @@ import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/data/models/habit.dart';
 
 class TrackingCalender extends StatelessWidget {
+  final List<DateTime> doneDates;
+  final List<DateTime> notDoneDates;
   const TrackingCalender({
     super.key,
-    required this.mainHabit,
+    required this.doneDates,
+    required this.notDoneDates,
   });
-
-  final Habit mainHabit;
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +28,21 @@ class TrackingCalender extends StatelessWidget {
               const Color.fromARGB(255, 206, 202, 202).withOpacity(0.5);
           Color borderDayColor =
               const Color.fromARGB(255, 206, 202, 202).withOpacity(0.5);
-          for (var datee in mainHabit.trakingDates!) {
-            if (date == datee.date) {
-              datee.done
-                  ? (
-                      dayColor = AppColors.doneDayColor,
-                      borderDayColor = AppColors.doneDayborderColor
-                    )
-                  : (
-                      dayColor = AppColors.falseDayColor,
-                      borderDayColor = AppColors.falseDayborderColor,
-                    );
+          for (var doneDate in doneDates) {
+            if (date == doneDate) {
+              dayColor = AppColors.doneDayColor;
+              borderDayColor = AppColors.doneDayborderColor;
+
+              //  (
+              //     dayColor = AppColors.falseDayColor,
+              //     borderDayColor = AppColors.falseDayborderColor,
+              //   );
+            }
+          }
+          for (var notDoneDate in notDoneDates) {
+            if (date == notDoneDate) {
+              dayColor = AppColors.falseDayColor;
+              borderDayColor = AppColors.falseDayborderColor;
             }
           }
           return Padding(

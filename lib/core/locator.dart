@@ -8,12 +8,10 @@ import 'package:islamic_habit_tracker/data/service/notification_service.dart';
 import 'package:islamic_habit_tracker/logic/cubits/delete_habits_cubits/delete_habits_cubit.dart';
 
 final locator = GetIt.instance;
-ThemeData _appTheme = AppThemes.lightAppTheme;
 LocalizationManager _appLanguage = LocalizationManager();
 ThemeManager _themeManager = ThemeManager();
 
 void setUp() {
-  locator.registerSingleton<ThemeData>(_appTheme);
   locator.registerLazySingleton<ThemeManager>(() => _themeManager);
   locator.registerLazySingleton<LocalizationManager>(() => _appLanguage);
   locator.registerLazySingleton<HabitDB>(() => HabitDB());

@@ -28,8 +28,9 @@ class DeleteHabitsCubit extends Cubit<DeleteHabitsState> {
   /// Delete all habits from settings screen
   void deleteAllHabits() async {
     try {
-      await db.deleteData('DELETE FROM ${db.habitTable}');
-      await db.deleteData('DELETE FROM ${db.datesTable}');
+      await db.deleteCompleteDatabase();
+      // await db.deleteData('DELETE FROM ${db.habitTable}');
+      // await db.deleteData('DELETE FROM ${db.datesTable}');
     } catch (e) {
       print('INside Cubbbbbit: rerror rmove all habits ${e.toString()}');
     }

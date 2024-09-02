@@ -24,33 +24,33 @@ abstract class AppColors {
 }
 
 class AppThemes {
-  static ThemeData lightAppTheme = ThemeData(
-    brightness: Brightness.light,
-    scaffoldBackgroundColor: const Color.fromARGB(255, 240, 238, 238),
-    checkboxTheme: CheckboxThemeData(
-      fillColor: MaterialStateColor.resolveWith(
-        (states) {
-          return Colors.black;
-        },
-      ),
-    ),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: AppColors.lForeground, elevation: 8),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-          elevation: 6,
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(3)))),
-    ),
-    textTheme: AppTextThemes.lightTextTheme,
-  );
+  static ThemeData lightAppTheme(BuildContext context) => ThemeData(
+        brightness: Brightness.light,
+        scaffoldBackgroundColor: const Color.fromARGB(255, 240, 238, 238),
+        checkboxTheme: CheckboxThemeData(
+          fillColor: MaterialStateColor.resolveWith(
+            (states) {
+              return Colors.black;
+            },
+          ),
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: AppColors.lForeground, elevation: 8),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              elevation: 6,
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(3)))),
+        ),
+        textTheme: AppTextThemes.lightTextTheme(context),
+      );
 
-  static ThemeData darkAppTheme = ThemeData(
-    brightness: Brightness.dark,
-    scaffoldBackgroundColor: AppColors.dBackground,
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      selectedItemColor: Colors.green,
-    ),
-    textTheme: AppTextThemes.darkTextTheme,
-  );
+  static ThemeData darkAppTheme() => ThemeData(
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: AppColors.dBackground,
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: Colors.green,
+        ),
+        textTheme: AppTextThemes.darkTextTheme,
+      );
 }

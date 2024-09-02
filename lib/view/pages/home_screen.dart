@@ -8,6 +8,7 @@ import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/data/models/habit.dart';
 import 'package:islamic_habit_tracker/generated/l10n.dart';
 import 'package:islamic_habit_tracker/logic/cubits/create_habit_cubit/create_habit_cubit.dart';
+import 'package:islamic_habit_tracker/view/components/create_habit_component.dart';
 import 'package:islamic_habit_tracker/view/widgets/habits_list_view.dart';
 import 'package:islamic_habit_tracker/view/widgets/horizontal_date_picker.dart';
 
@@ -43,18 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               _buildLogoHeader(context),
               _buildDatePickerHeader(size, context, textTheme),
-              isInputActive
-                  ? BlocListener<CreateHabitCubit, CreateHabitState>(
-                      listener: (context, state) {
-                        if (state is CreateHabitLoading) {
-                          createHabitLoading = true;
-                        }
-                      },
-                      child: createHabitLoading
-                          ? const Center(child: CircularProgressIndicator())
-                          : _createNewHabit(size, context),
-                    )
-                  : const HabitsListView(),
+              const CreateHabitComponent()
             ],
           ),
         ),
@@ -99,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
       clipBehavior: Clip.none,
       children: [
         SizedBox(
-          height: size.height / 4,
+          height: size.height / 6.3,
           width: double.infinity,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,64 +101,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: textTheme.displayLarge,
                 ),
               ),
-              const HorizontalDatePicaker(),
+              const HorizontalDatePicker(),
             ],
           ),
         ),
-        _addTaskButton(size, context),
+        // _addTaskButton(size, context),
       ],
-    );
-  }
-
-  Positioned _addTaskButton(Size size, BuildContext context) {
-    return Positioned(
-      top: size.height * 0.17,
-      left: size.width / 2.35,
-      child: ElevatedButton(
-          style: ButtonStyle(
-            elevation: const WidgetStatePropertyAll(15),
-            minimumSize: const WidgetStatePropertyAll(Size(50, 50)),
-            backgroundColor: WidgetStatePropertyAll(
-              AppColors.primary.withOpacity(0.7),
-            ),
-            foregroundColor: const WidgetStatePropertyAll(Colors.white),
-            shape: const WidgetStatePropertyAll(CircleBorder()),
-          ),
-          onPressed: () {
-            isInputActive = true;
-            createHabitLoading = false;
-            setState(() {});
-          },
-          child: const Icon(Icons.add)),
-    );
-  }
-
-  SizedBox _createNewHabit(Size size, BuildContext context) {
-    return SizedBox(
-      height: size.height * 0.09,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: TextField(
-          onSubmitted: (habitName) {
-            if (habitName.isEmpty) {
-              isInputActive = false;
-            } else {
-              isInputActive = false;
-              createHabitCubit.createHabit(
-                Habit(
-                  habitName: habitName,
-                  trakingDates: [],
-                ),
-              );
-            }
-            setState(() {});
-          },
-          decoration: InputDecoration(
-            border: const OutlineInputBorder(),
-            label: Text(S.of(context).addHabit),
-          ),
-        ),
-      ),
     );
   }
 }

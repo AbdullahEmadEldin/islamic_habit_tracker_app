@@ -4,8 +4,8 @@ import 'package:islamic_habit_tracker/core/localization/localization_manager.dar
 import 'package:islamic_habit_tracker/core/locator.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 
-class HorizontalDatePicaker extends StatelessWidget {
-  const HorizontalDatePicaker({
+class HorizontalDatePicker extends StatelessWidget {
+  const HorizontalDatePicker({
     super.key,
   });
 
@@ -24,10 +24,20 @@ class HorizontalDatePicaker extends StatelessWidget {
         width: size.width / 6,
         height: size.height / 7,
         dayStructure: DayStructure.dayStrDayNum,
-        activeDayStyle: const DayStyle(
+        activeDayStyle: DayStyle(
           borderRadius: 32.0,
+          dayStrStyle: Theme.of(context)
+              .textTheme
+              .titleMedium!
+              .copyWith(color: Colors.white),
         ),
-        inactiveDayStyle: const DayStyle(borderRadius: 32.0),
+        inactiveDayStyle: DayStyle(
+          borderRadius: 32.0,
+          dayStrStyle: Theme.of(context)
+              .textTheme
+              .titleMedium!
+              .copyWith(color: Colors.grey),
+        ),
       ),
     );
   }

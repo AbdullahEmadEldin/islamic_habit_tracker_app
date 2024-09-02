@@ -21,10 +21,17 @@ class _HabitTileItemState extends State<HabitTileItem> {
     super.initState();
     if (widget.habit.trakingDates != null &&
         widget.habit.trakingDates!.isNotEmpty) {
-      TrackDate? todayTrackingDate = widget.habit.trakingDates
-          ?.singleWhere((element) => element.date == dateOnly);
+      widget.habit.trakingDates?.singleWhere(
+        (element) {
+          print(
+              '------------------------->>>>>>>>>>>>> ${checkBoxBool = element.date == dateOnly}');
+          checkBoxBool = element.date == dateOnly;
+          return element.date == dateOnly;
+        },
+        orElse: () => TrackDate(date: dateOnly, done: false),
+      );
 
-      checkBoxBool = todayTrackingDate!.done;
+      // checkBoxBool = todayTrackingDate!.done;
     }
     print(
         '0000000000000000000000000000000000000 $checkBoxBool ---- ${widget.habit.habitName}');
@@ -58,9 +65,7 @@ class _HabitTileItemState extends State<HabitTileItem> {
             children: [
               Text(
                 widget.habit.habitName,
-                style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                    decoration:
-                        checkBoxBool ? TextDecoration.lineThrough : null),
+                style: Theme.of(context).textTheme.displayMedium!,
               ),
               Checkbox(
                   fillColor: WidgetStateProperty.resolveWith((states) {

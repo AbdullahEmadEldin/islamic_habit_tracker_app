@@ -15,7 +15,7 @@ class CreateHabitCubit extends Cubit<CreateHabitState> {
     try {
       await db.createData(
           " INSERT INTO ${db.habitTable} ('habitName') VALUES ('${habit.habitName}')");
-      addTrackDate(habit, TrackDate(date: DateTime.now(), done: true));
+      addTrackDate(habit, TrackDate(date: DateTime.now(), done: false));
       emit(CreateHabitSuccess());
     } catch (e) {
       print('INside Create Cubit: error::::  createHabit ${e.toString()}');

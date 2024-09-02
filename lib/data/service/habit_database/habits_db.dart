@@ -48,7 +48,7 @@ class HabitDB {
 
     dbBatch.execute('''
   CREATE TABLE "$datesTable"(
-    "id" INTEGER NOT NULL,
+    "id" INTEGER,
     "date" TEXT NOT NULL,
     "done" INTEGER NOT NULL
   )
