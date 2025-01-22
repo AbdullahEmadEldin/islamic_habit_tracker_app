@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:islamic_habit_tracker/core/locator.dart';
 import 'package:islamic_habit_tracker/core/theme/theme_manager.dart';
 import 'package:islamic_habit_tracker/data/service/notification_service.dart';
-import 'package:islamic_habit_tracker/app/azkar/view/pages/azkar_screen.dart';
+import 'package:islamic_habit_tracker/modules/azkar/view/pages/azkar_screen.dart';
 
 class NotificationSwitcher extends StatefulWidget {
   bool switchValue;
@@ -21,16 +21,16 @@ class NotificationSwitcher extends StatefulWidget {
 class _NotificationSwitcherState extends State<NotificationSwitcher> {
   @override
   void initState() {
-    listenToNotificationStream();
-    locator.get<NotificationService>().initializePlatformNotifications();
+    // listenToNotificationStream();
+    // locator.get<NotificationService>().initializePlatformNotifications();
     super.initState();
   }
 
-  void listenToNotificationStream() =>
-      locator.get<NotificationService>().behaviorSubject.listen((payload) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => AzkarScreen()));
-      });
+  // void listenToNotificationStream() =>
+  //     locator.get<NotificationService>().behaviorSubject.listen((payload) {
+  //       Navigator.push(
+  //           context, MaterialPageRoute(builder: (context) => AzkarScreen()));
+  //     });
   @override
   Widget build(BuildContext context) {
     return Switch(

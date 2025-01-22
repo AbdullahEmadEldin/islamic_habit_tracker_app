@@ -1,12 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/constants.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
-import 'package:islamic_habit_tracker/app/azkar/data/models/azkar_category.dart';
-import 'package:islamic_habit_tracker/app/azkar/data/repo/azkar_service.dart';
-import 'package:islamic_habit_tracker/generated/l10n.dart';
-import 'package:islamic_habit_tracker/app/azkar/view/widgets/azkar_category_tile.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:islamic_habit_tracker/modules/azkar/data/models/azkar_category.dart';
+import 'package:islamic_habit_tracker/modules/azkar/data/repo/azkar_service.dart';
+
+import 'package:islamic_habit_tracker/modules/azkar/view/widgets/azkar_category_tile.dart';
+
+import '../../../../core/localization/local_keys.dart';
 
 enum ViewType { list, grid }
 
@@ -53,53 +55,48 @@ class _AzkarScreenState extends State<AzkarScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return ModalProgressHUD(
-      opacity: 0.6,
-      inAsyncCall: loading,
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 48,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildPageHeader(context),
-                _showSearchField(size, context),
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: const BouncingScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: _crossAxisCount,
-                    childAspectRatio: _aspectRatio,
-                  ),
-                  itemCount: searchedZikrCategories.isEmpty
-                      ? zikrCategories.length
-                      : searchedZikrCategories.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        context.goNamed(AppRoutes.azkarDetailsScreen,
-                            extra: zikrCategories[index]);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: AzkarCategoryTile(
-                          zikrCategory: searchedZikrCategories.isEmpty
-                              ? zikrCategories[index]
-                              : searchedZikrCategories[index],
-                          tileColor: searchedZikrCategories.isEmpty
-                              ? azkarColors[index]
-                              : azkarColors[
-                                  searchedZikrCategories[index].id - 1],
-                        ),
-                      ),
-                    );
-                  },
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 48,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildPageHeader(context),
+              _showSearchField(size, context),
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: _crossAxisCount,
+                  childAspectRatio: _aspectRatio,
                 ),
-              ],
-            ),
+                itemCount: searchedZikrCategories.isEmpty
+                    ? zikrCategories.length
+                    : searchedZikrCategories.length,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {
+                      context.goNamed(AppRoutes.azkarDetailsScreen,
+                          extra: zikrCategories[index]);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: AzkarCategoryTile(
+                        zikrCategory: searchedZikrCategories.isEmpty
+                            ? zikrCategories[index]
+                            : searchedZikrCategories[index],
+                        tileColor: searchedZikrCategories.isEmpty
+                            ? azkarColors[index]
+                            : azkarColors[searchedZikrCategories[index].id - 1],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),
@@ -120,7 +117,7 @@ class _AzkarScreenState extends State<AzkarScreen> {
             },
             decoration: InputDecoration(
                 border: const OutlineInputBorder(),
-                label: Text(S.of(context).searchZikr),
+                label: Text(LocalKeys.searchZikr.tr()),
                 prefixIcon: IconButton(
                   onPressed: () {
                     isSearchTextFieldVisible = false;
@@ -146,7 +143,7 @@ class _AzkarScreenState extends State<AzkarScreen> {
           icon: const Icon(Icons.search),
         ),
         Text(
-          S.of(context).Azkar,
+          LocalKeys.azkar.tr(),
           style: Theme.of(context).textTheme.displayLarge,
         ),
         IconButton(

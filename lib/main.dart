@@ -1,76 +1,42 @@
+import 'dart:developer';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:islamic_habit_tracker/core/localization/localization_manager.dart';
+import 'package:islamic_habit_tracker/azkar_app.dart';
 import 'package:islamic_habit_tracker/core/locator.dart';
-import 'package:islamic_habit_tracker/core/navigation/router.dart';
-import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
-import 'package:islamic_habit_tracker/core/theme/theme_manager.dart';
-import 'package:islamic_habit_tracker/generated/l10n.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'core/cache/cache_helper.dart';
+import 'core/constants.dart';
+import 'core/localization/localization_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setUp();
+
+  /// Init shared preferences
+  await CacheHelper.init();
+
+  ///
+  /// EasyLocalization Initialization.
+  await EasyLocalization.ensureInitialized();
+
+  /// Get App Lang from cache.
+  final String startLocale = await LanguageManager.getAppLang();
+  log('====== $startLocale');
   final prefs = await SharedPreferences.getInstance();
   final showHome = prefs.getBool('showHome') ?? false;
-  runApp(AzkarApp(showHome: showHome));
-}
-
-class AzkarApp extends StatefulWidget {
-  final bool showHome;
-  const AzkarApp({super.key, required this.showHome});
-
-  @override
-  State<AzkarApp> createState() => _AzkarAppState();
-}
-
-class _AzkarAppState extends State<AzkarApp> {
-  @override
-
-  ///these listeners for switching theme
-  @override
-  void initState() {
-    locator.get<ThemeManager>().addListener(themeListener);
-    locator.get<LocalizationManager>().addListener(languageListener);
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    locator.get<ThemeManager>().removeListener(themeListener);
-    locator.get<LocalizationManager>().removeListener(languageListener);
-    super.dispose();
-  }
-
-  themeListener() {
-    if (mounted) {
-      setState(() {});
-    }
-  }
-
-  languageListener() {
-    if (mounted) {
-      setState(() {});
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: AppRouter.router(widget.showHome),
-      locale: const Locale('ar'),
-      debugShowCheckedModeBanner: false,
-      theme: locator.get<ThemeData>(),
-      darkTheme: AppThemes.darkAppTheme,
-      themeMode: locator.get<ThemeManager>().themeMode,
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+  runApp(
+    EasyLocalization(
+      startLocale: Locale(startLocale),
+      supportedLocales: [
+        Locale(LanguageType.english.code),
+        Locale(LanguageType.arabic.code)
       ],
-      supportedLocales: S.delegate.supportedLocales,
-    );
-  }
+      path: AppConstants.translationsPath,
+      fallbackLocale: const Locale('ar'),
+      child: AzkarApp(showHome: showHome),
+    ),
+  );
 }

@@ -1,15 +1,18 @@
 import 'dart:math';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
 import 'package:islamic_habit_tracker/core/theme/app_colors.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 import 'package:islamic_habit_tracker/data/models/habit.dart';
-import 'package:islamic_habit_tracker/generated/l10n.dart';
+
 import 'package:islamic_habit_tracker/logic/cubits/create_habit_cubit/create_habit_cubit.dart';
 import 'package:islamic_habit_tracker/view/widgets/habits_list_view.dart';
 import 'package:islamic_habit_tracker/view/widgets/horizontal_date_picker.dart';
+
+import '../../core/localization/local_keys.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -77,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Column(
             children: [
               Text(
-                S.of(context).Dawm,
+                LocalKeys.dawm.tr(),
                 style: Theme.of(context).textTheme.displayLarge,
               ),
               const Text('D A W M')
@@ -107,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 16, left: 12, right: 12),
                 child: Text(
-                  S.of(context).dailyRoutine,
+                  LocalKeys.dailyRoutine.tr(),
                   style: textTheme.displayLarge,
                 ),
               ),
@@ -165,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
-            label: Text(S.of(context).addHabit),
+            label: Text(LocalKeys.addHabit.tr()),
           ),
         ),
       ),

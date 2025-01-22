@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,12 +8,14 @@ import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
-import 'package:islamic_habit_tracker/generated/l10n.dart';
+
 import 'package:islamic_habit_tracker/logic/cubits/delete_habits_cubits/delete_habits_cubit.dart';
 import 'package:islamic_habit_tracker/view/widgets/drop_menu_component.dart';
 import 'package:islamic_habit_tracker/view/widgets/setting_option.dart';
 import 'package:islamic_habit_tracker/view/widgets/switcher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../core/localization/local_keys.dart';
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({Key? key}) : super(key: key);
@@ -75,7 +78,7 @@ class SettingsScreen extends StatelessWidget {
                 children: [
                   SettingOption(
                     icon: Icons.notifications,
-                    setting: S.of(context).notification,
+                    setting: LocalKeys.notification.tr(),
                     trailing: _switchNotifications(),
                     onTap: () {},
                     isClickable: false,
@@ -83,7 +86,7 @@ class SettingsScreen extends StatelessWidget {
                   _buildDivider(),
                   SettingOption(
                     icon: Icons.language,
-                    setting: S.of(context).lang,
+                    setting: LocalKeys.lang.tr(),
                     trailing: SizedBox(
                         height: size.height * 0.02, child: PopMenuComponent()),
                     onTap: () {},
@@ -92,13 +95,13 @@ class SettingsScreen extends StatelessWidget {
                   _buildDivider(),
                   SettingOption(
                     icon: Icons.mail,
-                    setting: S.of(context).help,
+                    setting: LocalKeys.help.tr(),
                     onTap: () {},
                   ),
                   _buildDivider(),
                   SettingOption(
                     icon: Icons.delete_outline_outlined,
-                    setting: S.of(context).DeleteAllData,
+                    setting: LocalKeys.deleteAllData.tr(),
                     onTap: () async {
                       final prefs = await SharedPreferences.getInstance();
                       BlocProvider.of<DeleteHabitsCubit>(context)
@@ -110,7 +113,7 @@ class SettingsScreen extends StatelessWidget {
                   _buildDivider(),
                   SettingOption(
                     icon: Icons.error,
-                    setting: S.of(context).About,
+                    setting: LocalKeys.about.tr(),
                     onTap: () {},
                   ),
                 ],
@@ -125,7 +128,7 @@ class SettingsScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          S.of(context).settings,
+          LocalKeys.settings.tr(),
           style: Theme.of(context)
               .textTheme
               .displayLarge!

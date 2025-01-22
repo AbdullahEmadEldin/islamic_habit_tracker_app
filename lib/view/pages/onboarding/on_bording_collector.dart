@@ -1,13 +1,16 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
-import 'package:islamic_habit_tracker/generated/l10n.dart';
+
 import 'package:islamic_habit_tracker/view/pages/onboarding/build_onboard_screen.dart';
 import 'package:islamic_habit_tracker/view/pages/splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../../../core/localization/local_keys.dart';
 
 class OnBoardingCollector extends StatefulWidget {
   const OnBoardingCollector({Key? key}) : super(key: key);
@@ -51,7 +54,7 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
                   height: 140,
                 ),
               ),
-              subtitle: S.of(context).onboradingonedetail,
+              subtitle: LocalKeys.onboradingonedetail.tr(),
               illustratingImage: Positioned(
                 top: size.height * 0.6,
                 right: size.width * 0.45,
@@ -73,7 +76,7 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
                   height: 200,
                 ),
               ),
-              subtitle: S.of(context).onboardingtwo,
+              subtitle: LocalKeys.onboardingtwo.tr(),
               illustratingImage: Positioned(
                 top: size.height * 0.59,
                 right: size.width * 0.4,
@@ -101,7 +104,7 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
                         () => _pageViewController.animateToPage(2,
                             duration: const Duration(milliseconds: 300),
                             curve: Curves.easeIn),
-                        S.of(context).skip),
+                        LocalKeys.skip.tr()),
                     Center(
                       child: SmoothPageIndicator(
                         controller: _pageViewController,
@@ -123,7 +126,7 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
                         () => _pageViewController.nextPage(
                             duration: const Duration(milliseconds: 300),
                             curve: Curves.easeIn),
-                        S.of(context).next),
+                        LocalKeys.next.tr()),
                   ]),
             ),
     );
@@ -146,7 +149,7 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
             AppColors.primary,
           )),
       child: Text(
-        S.of(context).start,
+        LocalKeys.start.tr(),
         style: Theme.of(context).textTheme.displayLarge!.copyWith(
               color: Colors.white,
             ),

@@ -1,14 +1,17 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 
 import 'package:islamic_habit_tracker/data/models/habit.dart';
-import 'package:islamic_habit_tracker/generated/l10n.dart';
+
 import 'package:islamic_habit_tracker/logic/cubits/delete_habits_cubits/delete_habits_cubit.dart';
 import 'package:islamic_habit_tracker/view/widgets/tracking_calendar.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+
+import '../../core/localization/local_keys.dart';
 
 class HabitsDetails extends StatelessWidget {
   final Habit mainHabit;
@@ -50,7 +53,7 @@ class HabitsDetails extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  S.of(context).trackHabit,
+                  LocalKeys.trackHabit.tr(),
                   style: Theme.of(context)
                       .textTheme
                       .displayMedium!
@@ -61,7 +64,7 @@ class HabitsDetails extends StatelessWidget {
                     _ensureDeleteHabitDialog(context);
                   },
                   child: Text(
-                    S.of(context).deleteHabit,
+                    LocalKeys.deleteHabit.tr(),
                     style: Theme.of(context)
                         .textTheme
                         .displayMedium!
@@ -78,14 +81,14 @@ class HabitsDetails extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      S.of(context).Statistics,
+                      LocalKeys.statistics.tr(),
                       style: Theme.of(context)
                           .textTheme
                           .displayMedium!
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      "${S.of(context).habitStartingDate} $startingDate",
+                      "${LocalKeys.habitStartingDate.tr()} $startingDate",
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ],
@@ -102,11 +105,11 @@ class HabitsDetails extends StatelessWidget {
                     Column(
                       children: [
                         Text(
-                          '${S.of(context).AcheivementPercent} ',
+                          '${LocalKeys.acheivementPercent.tr()} ',
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         Text(
-                          '${S.of(context).streak}:  ${_calStreakDays().toInt()}',
+                          '${LocalKeys.streak.tr()}:  ${_calStreakDays().toInt()}',
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ],
@@ -143,7 +146,7 @@ class HabitsDetails extends StatelessWidget {
         content: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            S.of(dialogContext).doYouWantRemoveHabit,
+            LocalKeys.doYouWantRemoveHabit.tr(),
             style: Theme.of(dialogContext).textTheme.displayMedium,
           ),
         ),
@@ -155,12 +158,12 @@ class HabitsDetails extends StatelessWidget {
                 Navigator.of(dialogContext).pop(); // Pop from the dialog
                 Navigator.of(context).pop();
               },
-              child: Text(S.of(dialogContext).Yes)),
+              child: Text(LocalKeys.yes.tr())),
           TextButton(
               onPressed: () {
                 dialogContext.pop();
               },
-              child: Text(S.of(dialogContext).NO))
+              child: Text(LocalKeys.no.tr()))
         ],
       ),
     );
@@ -178,7 +181,7 @@ class HabitsDetails extends StatelessWidget {
               color: AppColors.doneDayColor,
             ),
             const SizedBox(width: 4),
-            Text(S.of(context).doneLabelColor)
+            Text(LocalKeys.doneLabelColor.tr())
           ],
         ),
         Row(
@@ -189,7 +192,7 @@ class HabitsDetails extends StatelessWidget {
               color: AppColors.falseDayColor,
             ),
             const SizedBox(width: 4),
-            Text(S.of(context).notAchieved)
+            Text(LocalKeys.notAchieved.tr())
           ],
         ),
         Row(
@@ -200,7 +203,7 @@ class HabitsDetails extends StatelessWidget {
               color: const Color.fromARGB(255, 206, 202, 202).withOpacity(0.5),
             ),
             const SizedBox(width: 4),
-            Text(S.of(context).notSartingYet)
+            Text(LocalKeys.notSartingYet.tr())
           ],
         ),
       ],

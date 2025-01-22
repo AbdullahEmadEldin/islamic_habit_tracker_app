@@ -1,15 +1,31 @@
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'dart:async';
 
-class LocalizationManager with ChangeNotifier {
-  Locale _appLanguage = Locale('en');
-  get appLanguage => _appLanguage;
-  changeLanguage(String locale) {
-    _appLanguage = locale == 'en' ? const Locale('en') : const Locale('ar');
-    notifyListeners();
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+
+import '../cache/cache_helper.dart';
+import '../constants.dart';
+
+
+enum LanguageType {
+  english('en'),
+  arabic('ar');
+
+  final String code;
+
+  const LanguageType(this.code);
+}
+
+class LanguageManager {
+  static Future<void> changeAppLang(BuildContext context,
+      {required LanguageType lang}) async {
+    await CacheHelper.saveData(
+        key: SharedPrefKeys.lang, value: lang.code);
+    context.setLocale(Locale(lang.code));
   }
 
-  bool isArabic() {
-    return Intl.getCurrentLocale() == 'ar';
+  static Future<String> getAppLang() async {
+    return await CacheHelper.getData(key: SharedPrefKeys.lang) ??
+        LanguageType.arabic.code;
   }
 }

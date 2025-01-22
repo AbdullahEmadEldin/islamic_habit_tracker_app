@@ -37,7 +37,7 @@
 //                     Align(
 //                       alignment: Alignment.centerRight,
 //                       child: Text(
-//                         S.of(context).allHabits,
+//                         LocalKeys.allHabits.tr(),
 //                         style: Theme.of(context).textTheme.displayLarge,
 //                       ),
 //                     ),
@@ -50,7 +50,7 @@
 //                           ///beacuse it isn't called dynamically for unknown behaviour
 //                           widget.update();
 //                         },
-//                         child: Text(S.of(context).deleteAll))
+//                         child: Text(LocalKeys.deleteAll.tr()))
 //                   ],
 //                 ),
 //                 isInputActive
@@ -133,7 +133,7 @@
 //           },
 //           decoration: InputDecoration(
 //             border: const OutlineInputBorder(),
-//             label: Text(S.of(context).addHabit),
+//             label: Text(LocalKeys.addHabit.tr()),
 //           ),
 //         ),
 //       ),

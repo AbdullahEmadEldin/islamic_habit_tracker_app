@@ -1,10 +1,10 @@
-import 'dart:isolate';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
-import 'package:islamic_habit_tracker/app/azkar/data/models/single_zikr.dart';
-import 'package:islamic_habit_tracker/generated/l10n.dart';
+import 'package:islamic_habit_tracker/modules/azkar/data/models/single_zikr.dart';
+
+import '../../../../core/localization/local_keys.dart';
 
 class ZikrTile extends StatelessWidget {
   final Zikr duaa;
@@ -41,7 +41,7 @@ class ZikrTile extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("${S.of(context).count} ${duaa.count}",
+                Text("${LocalKeys.count.tr()} ${duaa.count}",
                     style: Theme.of(context).textTheme.displaySmall),
                 GestureDetector(
                   onTap: () {
@@ -49,7 +49,7 @@ class ZikrTile extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         duration: const Duration(seconds: 2),
-                        content: Text(S.of(context).textCoppied),
+                        content: Text(LocalKeys.textCoppied.tr()),
                       ),
                     );
                   },

@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
 import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
-import 'package:islamic_habit_tracker/generated/l10n.dart';
+
+import '../../core/localization/local_keys.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -44,7 +46,7 @@ class SplashScreen extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  S.of(context).Dawm,
+                  LocalKeys.dawm.tr(),
                   style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                       fontFamily: 'arabic_typesetting',
                       color: const Color(0xff674D9D)),

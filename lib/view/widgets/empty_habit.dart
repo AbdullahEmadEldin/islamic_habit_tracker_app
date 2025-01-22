@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
-import 'package:islamic_habit_tracker/generated/l10n.dart';
+
+import '../../core/localization/local_keys.dart';
 
 class EmptyHabit extends StatelessWidget {
   const EmptyHabit({Key? key}) : super(key: key);
@@ -16,14 +18,14 @@ class EmptyHabit extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          S.of(context).emptyHabits,
+          LocalKeys.emptyHabits.tr(),
           style: Theme.of(context)
               .textTheme
               .displayMedium!
               .copyWith(color: Colors.deepPurple),
         ),
         Text(
-          S.of(context).addHabit,
+          LocalKeys.addHabit.tr(),
           style: Theme.of(context)
               .textTheme
               .displayMedium!

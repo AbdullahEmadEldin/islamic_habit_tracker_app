@@ -9,17 +9,17 @@ import 'package:islamic_habit_tracker/logic/cubits/delete_habits_cubits/delete_h
 
 final locator = GetIt.instance;
 ThemeData _appTheme = AppThemes.lightAppTheme;
-LocalizationManager _appLanguage = LocalizationManager();
+LanguageManager _appLanguage = LanguageManager();
 ThemeManager _themeManager = ThemeManager();
 
 void setUp() {
   locator.registerSingleton<ThemeData>(_appTheme);
   locator.registerLazySingleton<ThemeManager>(() => _themeManager);
-  locator.registerLazySingleton<LocalizationManager>(() => _appLanguage);
+  locator.registerLazySingleton<LanguageManager>(() => _appLanguage);
   locator.registerLazySingleton<HabitDB>(() => HabitDB());
 
   locator.registerLazySingleton<DeleteHabitsCubit>(() => DeleteHabitsCubit());
 
-  locator
-      .registerLazySingleton<NotificationService>(() => NotificationService());
+  // locator
+  //     .registerLazySingleton<NotificationService>(() => NotificationService());
 }
