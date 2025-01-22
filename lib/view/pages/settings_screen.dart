@@ -6,8 +6,8 @@ import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
+import 'package:islamic_habit_tracker/core/helpers/extensions.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
-import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 
 import 'package:islamic_habit_tracker/logic/cubits/delete_habits_cubits/delete_habits_cubit.dart';
 import 'package:islamic_habit_tracker/view/widgets/drop_menu_component.dart';
@@ -35,8 +35,8 @@ class SettingsScreen extends StatelessWidget {
                   bottomLeft: Radius.circular(16),
                   bottomRight: Radius.circular(16)),
               gradient: LinearGradient(colors: [
-                AppColors.lContainerColor,
-                AppColors.primary,
+                context.colorScheme.secondary,
+                context.colorScheme.primary,
               ]),
             ),
           ),
@@ -68,7 +68,7 @@ class SettingsScreen extends StatelessWidget {
           width: size.width * 0.7,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: AppColors.lSecondaryBackground.withOpacity(0.3),
+            color: context.colorScheme.surface.withOpacity(0.3),
           ),
           child: BlurryContainer(
             elevation: 7,

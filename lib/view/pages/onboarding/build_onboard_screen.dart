@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
-import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
+import 'package:islamic_habit_tracker/core/helpers/extensions.dart';
 
 import '../../../core/localization/local_keys.dart';
 
@@ -23,7 +23,7 @@ class OnboardingBuilder extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      color: AppColors.splashBackground.withOpacity(0.7),
+      color: context.colorScheme.secondary.withOpacity(0.7),
       child: Stack(
         children: [
           SizedBox(height: size.height * 0.2),

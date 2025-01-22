@@ -2,8 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
+import 'package:islamic_habit_tracker/core/helpers/extensions.dart';
 import 'package:islamic_habit_tracker/core/navigation/routes.dart';
-import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
 
 import 'package:islamic_habit_tracker/view/pages/onboarding/build_onboard_screen.dart';
 import 'package:islamic_habit_tracker/view/pages/splash_screen.dart';
@@ -94,7 +94,7 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
           ? _getSartedButton(context, size)
           : Container(
               padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(color: AppColors.lSecondaryBackground),
+              decoration: BoxDecoration(color: context.colorScheme.secondary),
               height: size.height * 0.1,
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -116,7 +116,7 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
                         effect: WormEffect(
                           dotHeight: 8,
                           radius: 16,
-                          activeDotColor: AppColors.primary,
+                          activeDotColor: context.colorScheme.primary,
                           dotColor: const Color.fromARGB(255, 216, 213, 213),
                         ),
                       ),
@@ -146,7 +146,7 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
           minimumSize:
               MaterialStateProperty.all(Size.fromHeight(size.height * 0.1)),
           backgroundColor: MaterialStatePropertyAll(
-            AppColors.primary,
+            context.colorScheme.primary,
           )),
       child: Text(
         LocalKeys.start.tr(),
@@ -169,7 +169,7 @@ class _OnBoardingCollectorState extends State<OnBoardingCollector> {
             ),
           ),
         ),
-        backgroundColor: WidgetStatePropertyAll(AppColors.primary),
+        backgroundColor: WidgetStatePropertyAll(context.colorScheme.primary),
         foregroundColor: const WidgetStatePropertyAll(Colors.white),
       ),
       child: Text(text),

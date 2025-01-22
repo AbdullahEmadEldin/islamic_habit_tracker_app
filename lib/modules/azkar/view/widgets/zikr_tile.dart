@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
+import 'package:islamic_habit_tracker/core/helpers/extensions.dart';
 import 'package:islamic_habit_tracker/modules/azkar/data/models/single_zikr.dart';
 
 import '../../../../core/localization/local_keys.dart';
@@ -24,7 +24,7 @@ class ZikrTile extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: AppColors.lContainerColor),
+            color: context.colorScheme.secondary),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

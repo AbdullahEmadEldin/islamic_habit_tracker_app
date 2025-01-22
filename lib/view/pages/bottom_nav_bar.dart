@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
+import 'package:islamic_habit_tracker/core/helpers/extensions.dart';
 import 'package:islamic_habit_tracker/modules/azkar/view/pages/azkar_screen.dart';
 import 'package:islamic_habit_tracker/view/pages/home_screen.dart';
 import 'package:islamic_habit_tracker/view/pages/settings_screen.dart';
@@ -29,19 +29,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.home),
         title: "Home",
-        activeColorPrimary: AppColors.primary,
+        activeColorPrimary: context.colorScheme.primary,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.book_circle),
         title: "Azkar",
-        activeColorPrimary: AppColors.primary,
+        activeColorPrimary: context.colorScheme.primary,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.settings),
         title: "Settings",
-        activeColorPrimary: AppColors.primary,
+        activeColorPrimary: context.colorScheme.primary,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
     ];
@@ -65,7 +65,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         decoration: NavBarDecoration(
           borderRadius: BorderRadius.circular(10.0),
           // gradient: LinearGradient(
-          //     colors: [AppColors.lContainerColor, AppColors.lBackground]),
+          //     colors: [context.colorScheme.lContainerColor, context.colorScheme.lBackground]),
         ),
         popAllScreensOnTapOfSelectedTab: true,
         popActionScreens: PopActionScreensType.all,

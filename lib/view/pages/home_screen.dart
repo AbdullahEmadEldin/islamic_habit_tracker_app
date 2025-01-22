@@ -4,8 +4,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:islamic_habit_tracker/core/app_assets.dart';
-import 'package:islamic_habit_tracker/core/theme/app_colors.dart';
-import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
+import 'package:islamic_habit_tracker/core/helpers/extensions.dart';
+
 import 'package:islamic_habit_tracker/data/models/habit.dart';
 
 import 'package:islamic_habit_tracker/logic/cubits/create_habit_cubit/create_habit_cubit.dart';
@@ -69,7 +69,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [AppColors.lContainerColor, AppColors.lBackground],
+          colors: [
+            context.colorScheme.secondary,
+            context.colorScheme.surface
+          ],
           begin: Alignment.topLeft,
           transform: const GradientRotation(pi / 4),
         ),
@@ -132,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
             elevation: const WidgetStatePropertyAll(15),
             minimumSize: const WidgetStatePropertyAll(Size(50, 50)),
             backgroundColor: WidgetStatePropertyAll(
-              AppColors.primary.withOpacity(0.7),
+              context.colorScheme.primary.withOpacity(0.7),
             ),
             foregroundColor: const WidgetStatePropertyAll(Colors.white),
             shape: const WidgetStatePropertyAll(CircleBorder()),

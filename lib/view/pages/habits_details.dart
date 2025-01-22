@@ -2,8 +2,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
+import 'package:islamic_habit_tracker/core/helpers/extensions.dart';
 
 import 'package:islamic_habit_tracker/data/models/habit.dart';
 
@@ -38,7 +37,7 @@ class HabitsDetails extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
-                    color: AppColors.primary,
+                    color: context.colorScheme.primary,
                     borderRadius: BorderRadius.circular(10)),
                 child: Text(
                   mainHabit.habitName,
@@ -127,7 +126,7 @@ class HabitsDetails extends StatelessWidget {
                           ? const Color.fromARGB(255, 212, 66, 56)
                           : _calculateDoneHabitPercent() < 0.7
                               ? const Color.fromARGB(255, 255, 208, 0)
-                              : AppColors.doneDayborderColor,
+                              : context.colorScheme.primary,
                     )
                   ],
                 ),
@@ -178,7 +177,7 @@ class HabitsDetails extends StatelessWidget {
             Container(
               height: 10,
               width: 10,
-              color: AppColors.doneDayColor,
+              color: Colors.green,
             ),
             const SizedBox(width: 4),
             Text(LocalKeys.doneLabelColor.tr())
@@ -189,7 +188,7 @@ class HabitsDetails extends StatelessWidget {
             Container(
               height: 10,
               width: 10,
-              color: AppColors.falseDayColor,
+              color: Colors.redAccent,
             ),
             const SizedBox(width: 4),
             Text(LocalKeys.notAchieved.tr())

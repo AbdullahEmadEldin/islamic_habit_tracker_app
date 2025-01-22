@@ -1,7 +1,7 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
+import 'package:islamic_habit_tracker/core/helpers/extensions.dart';
 
 class HorizontalDatePicaker extends StatelessWidget {
   const HorizontalDatePicaker({
@@ -17,7 +17,7 @@ class HorizontalDatePicaker extends StatelessWidget {
       firstDate: DateTime.now().subtract(const Duration(days: 1)),
       focusDate: DateTime.now(),
       lastDate: DateTime.now().add(const Duration(days: 1)),
-      activeColor: AppColors.primary.withOpacity(0.7),
+      activeColor: context.colorScheme.primary.withOpacity(0.7),
       dayProps: EasyDayProps(
         landScapeMode: true,
         width: size.width / 6,

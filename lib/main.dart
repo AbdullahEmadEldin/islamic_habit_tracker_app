@@ -7,7 +7,7 @@ import 'package:islamic_habit_tracker/core/locator.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'core/cache/cache_helper.dart';
+import 'core/services/cache/cache_helper.dart';
 import 'core/constants.dart';
 import 'core/localization/localization_manager.dart';
 

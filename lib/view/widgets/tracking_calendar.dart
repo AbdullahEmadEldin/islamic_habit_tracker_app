@@ -1,6 +1,6 @@
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
-import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
+
 import 'package:islamic_habit_tracker/data/models/habit.dart';
 
 class TrackingCalender extends StatelessWidget {
@@ -31,12 +31,12 @@ class TrackingCalender extends StatelessWidget {
             if (date == datee.date) {
               datee.done
                   ? (
-                      dayColor = AppColors.doneDayColor,
-                      borderDayColor = AppColors.doneDayborderColor
+                      dayColor = Colors.green.withOpacity(0.5),
+                      borderDayColor = Colors.green
                     )
                   : (
-                      dayColor = AppColors.falseDayColor,
-                      borderDayColor = AppColors.falseDayborderColor,
+                      dayColor = Colors.red.withOpacity(0.5),
+                      borderDayColor = Colors.red,
                     );
             }
           }

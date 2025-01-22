@@ -36,4 +36,7 @@ class LocalKeys {
   static const String onboradingonedetail = "onboradingonedetail";
   static const String onboardingtwo = "onboardingtwo";
   static const String textCoppied = "textCoppied";
+  static const String noConnectionTitle ="noConnectionTitle";
+  static const String noConnectionDesc = "noConnectionDesc";
+  static const String tryAgain = "noConnectionTryAgain";
 }

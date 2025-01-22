@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:islamic_habit_tracker/core/theme/app_theme.dart';
+import 'package:islamic_habit_tracker/core/helpers/extensions.dart';
 import 'package:islamic_habit_tracker/modules/azkar/data/models/azkar_category.dart';
 import 'package:islamic_habit_tracker/modules/azkar/view/widgets/zikr_tile.dart';
 
@@ -60,7 +60,7 @@ class _AzkarDetailsState extends State<AzkarDetails> {
             },
             icon: Icon(
               Icons.font_download,
-              color: AppColors.lForeground,
+              color: context.colorScheme.surfaceDim,
             ))
       ],
     );

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../cache/cache_helper.dart';
+import '../services/cache/cache_helper.dart';
 import '../constants.dart';
 
 
